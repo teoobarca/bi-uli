@@ -6,7 +6,7 @@ window.uliWeb = (() => {
   // index.html's #splash stays until the app has drawn its first frame (Main.kt calls ready()). Its bar counts the bytes
   // the app's files have brought, out of the total scripts/web.sh writes into the meta "uli-bytes".
   const TEXT = {
-    first: "Prvýkrát sa sťahuje celá appka, asi 4 MB. Potom sa otvára hneď, aj bez internetu.",
+    first: "Prvýkrát sa sťahuje celá appka, asi 5 MB. Potom sa otvára hneď, aj bez internetu.",
     stalled: "Sťahovanie stojí. Skontroluj pripojenie na internet.",
     offline: "Appku sa nepodarilo stiahnuť. Skontroluj pripojenie na internet a skús to znova.",
     old: "Tento prehliadač appku nespustí. Treba iOS 18.2 alebo novší, prípadne aktuálny Chrome či Firefox.",

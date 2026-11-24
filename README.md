@@ -3,24 +3,35 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/teoobarca/bi-uli/releases/latest/download/ULI.apk"><b>⬇ Stiahnuť ULI.apk</b></a>
-  &nbsp;·&nbsp; Android 13+ &nbsp;·&nbsp; offline &nbsp;·&nbsp; zadarmo
+  <a href="https://github.com/teoobarca/bi-uli/releases/latest/download/ULI.apk"><b>⬇ Android: stiahnuť ULI.apk</b></a>
+  &nbsp;·&nbsp; <a href="https://teoobarca.github.io/bi-uli/"><b>iPhone a počítač: otvoriť v prehliadači</b></a>
+  &nbsp;·&nbsp; offline &nbsp;·&nbsp; zadarmo
 </p>
 
-**ULI** je Android appka na precvičenie zápočtového testu **BI-ULI (Úvod do Linuxu)** na FIT ČVUT. Obsahuje všetkých
-70 otázok z procvičovacieho testu, ktorý študenti zdieľajú na fit-wiki. Pri každej otázke sa dozvieš, prečo je
-odpoveď správna a prečo tá tvoja nebola. Kolo má 10 otázok, takže ho stihneš cestou v metre.
+**ULI** je appka pre Android, iPhone aj počítač na precvičenie zápočtového testu **BI-ULI (Úvod do Linuxu)** na FIT
+ČVUT. Obsahuje všetkých 70 otázok z procvičovacieho testu, ktorý študenti zdieľajú na fit-wiki. Pri každej otázke sa
+dozvieš, prečo je odpoveď správna a prečo tá tvoja nebola. Kolo má 10 otázok, takže ho stihneš cestou v metre.
 
-Celá appka vznikla z jedného promptu v [Claude Code](https://claude.com/claude-code) a [T3 Code](https://t3.codes). Máš iPhone?
-[Takto si ju prenesieš](#časté-otázky).
+Celá appka vznikla z jedného promptu v [Claude Code](https://claude.com/claude-code) a [T3 Code](https://t3.codes).
 
 ## Inštalácia (2 minúty)
+
+**Android** (13 a novší)
 
 1. V mobile otvor [**ULI.apk**](https://github.com/teoobarca/bi-uli/releases/latest/download/ULI.apk) a stiahni ho.
 2. Ťukni na stiahnutý súbor. Android sa spýta, či môže prehliadač inštalovať aplikácie, daj **Povoliť**.
 3. **Inštalovať**. Hotovo, ďalej appka nepotrebuje internet.
 
 Novšiu verziu nainštaluješ rovnako, cez tú starú. Tvoj postup ostane.
+
+**iPhone** (iOS 18.2 a novší)
+
+1. V Safari otvor [teoobarca.github.io/bi-uli](https://teoobarca.github.io/bi-uli/).
+2. Ťukni na **Zdieľať** a potom na **Pridať na plochu**. Sprav to ešte pred učením: appka na ploche začína od nuly
+   a v Safari sa postup po 7 dňoch bez návštevy zmaže.
+3. Otvor ULI z plochy. Po prvom načítaní (asi 5 MB) funguje aj bez internetu.
+
+**Počítač:** stačí [otvoriť tú istú stránku](https://teoobarca.github.io/bi-uli/) v aktuálnom prehliadači.
 
 <table>
 <tr>
@@ -95,17 +106,8 @@ kľúča, lebo za ňu dostaneš body, a pri týchto otázkach ťa na rozdiel upo
 
 ## Časté otázky
 
-**Je aj pre iPhone?** Zatiaľ nie, len Android 13 a novší. Celá appka však vznikla z jedného promptu v
-[Claude Code](https://claude.com/claude-code) a [T3 Code](https://t3.codes), takže port na iPhone si spravíš rovnako.
-Naklonuj repo, otvor ho v Claude Code (alebo v T3 Code) a daj mu tento prompt:
-
-```text
-Preportuj túto appku na iPhone.
-```
-
-Keď ti port pôjde, pošli pull request alebo link a pridám ho sem.
-
-**Potrebuje internet?** Nie. Appka nemá ani povolenie na internet, tvoj postup ostáva len v mobile.
+**Potrebuje internet?** Nie. Android appka nemá ani povolenie na internet, webová ho potrebuje len na prvé načítanie.
+Tvoj postup ostáva len v tvojom zariadení a medzi zariadeniami sa neprenáša.
 
 **Android hlási „neznámy zdroj“ alebo Play Protect.** Je to bežné pri appkách mimo Google Play. Celý zdrojový kód je
 tu v repe, APK si môžeš zostaviť aj sám (pozri nižšie).
@@ -117,16 +119,20 @@ s textom, možnosťami, vysvetlením a ukážkou.
 <details>
 <summary><b>Pre vývojárov</b></summary>
 
-Kotlin, Jetpack Compose, Material 3. Žiadny server ani analytika.
+Kotlin, Compose Multiplatform, Material 3: jeden kód pre Android aj web (Kotlin/Wasm). Žiadny server ani analytika.
 
 - `content/questions.json`: 70 otázok, zdroj pravdy. `python3 content/check.py` ho skontroluje.
-- `app/src/main/java/dev/hamper/uli/engine/`: učenie bez Androidu (Leitnerove boxy, kolá, skúška, odhad), pokryté
+- `shared/src/commonMain/kotlin/dev/hamper/uli/`: celá appka. `engine/` je učenie (Leitnerove boxy, kolá, skúška, odhad), pokryté
   unit testami.
-- Postup je v `progress.json`, rozrobené kolo alebo skúška v `session.json`. Oba sa zapisujú atomicky. Poškodený
-  súbor sa nezmaže, appka ho odloží bokom.
+- `app/` je obal pre Android, `shared/src/wasmJsMain/` obal pre prehliadač.
+- Postup je v `progress.json`, rozrobené kolo alebo skúška v `session.json` (na webe v `localStorage`). Poškodené dáta
+  sa nezmažú, appka ich odloží bokom.
 
 ```sh
 scripts/gate.sh                  # testy + debug build + kontrola obsahu
+scripts/web.sh                   # webová verzia do build/web/
+uvx --with playwright==1.64.0 python scripts/web-check.py   # prejde ju v iPhone, Android aj počítačovom prehliadači
+scripts/web-publish.sh           # zverejní ju na GitHub Pages (vetva gh-pages)
 scripts/capture.sh <dir>         # zábery všetkých obrazoviek v oboch témach (beží na emulátore)
 ./gradlew :app:assembleRelease   # potrebuje podpisový kľúč v ~/.uli/android-signing.properties
 ```
