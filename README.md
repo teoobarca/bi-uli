@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://github.com/teoobarca/bi-uli/releases/latest/download/ULI.apk"><b>⬇ Android: stiahnuť ULI.apk</b></a>
-  &nbsp;·&nbsp; <a href="https://teoobarca.github.io/bi-uli/"><b>iPhone a počítač: otvoriť v prehliadači</b></a>
+  &nbsp;·&nbsp; <a href="https://uli.hamper.dev/"><b>iPhone a počítač: otvoriť v prehliadači</b></a>
   &nbsp;·&nbsp; offline &nbsp;·&nbsp; zadarmo
 </p>
 
@@ -26,12 +26,12 @@ Novšiu verziu nainštaluješ rovnako, cez tú starú. Tvoj postup ostane.
 
 **iPhone** (iOS 18.2 a novší)
 
-1. V Safari otvor [teoobarca.github.io/bi-uli](https://teoobarca.github.io/bi-uli/).
+1. V Safari otvor [uli.hamper.dev](https://uli.hamper.dev/).
 2. Ťukni na **Zdieľať** a potom na **Pridať na plochu**. Sprav to ešte pred učením: appka na ploche začína od nuly
    a v Safari sa postup po 7 dňoch bez návštevy zmaže.
 3. Otvor ULI z plochy. Po prvom načítaní (asi 5 MB) funguje aj bez internetu.
 
-**Počítač:** stačí [otvoriť tú istú stránku](https://teoobarca.github.io/bi-uli/) v aktuálnom prehliadači.
+**Počítač:** stačí [otvoriť tú istú stránku](https://uli.hamper.dev/) v aktuálnom prehliadači.
 
 <table>
 <tr>
