@@ -24,9 +24,10 @@ private fun <T> read(key: String, decode: (String) -> T): Loaded<T> {
     }
 }
 
-private fun write(key: String, text: String) {
+/** Writes [text], or removes [key] when it is null. */
+private fun write(key: String, text: String?) {
     try {
-        localStorage.setItem(key, text)
+        if (text != null) localStorage.setItem(key, text) else localStorage.removeItem(key)
     } catch (e: Throwable) {
         // a JS error (a full or blocked storage) is no kotlin.Exception; callers handle those
         throw IllegalStateException("localStorage refused $key", e)
@@ -43,7 +44,7 @@ internal class WebProgressStore : ProgressStore {
 internal class WebSessionStore : SessionStore {
     override fun load(): Loaded<SavedSession> = read(KEY) { storeJson.decodeFromString<SavedSession>(it) }
     override fun save(data: SavedSession) {
-        if (data.isEmpty) localStorage.removeItem(KEY) else write(KEY, storeJson.encodeToString(data))
+        write(KEY, if (data.isEmpty) null else storeJson.encodeToString(data))
     }
 
     private companion object { const val KEY = "uli.session" }

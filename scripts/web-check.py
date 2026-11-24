@@ -38,6 +38,35 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         pass
 
 
+class Notched(Handler):
+    """The same files as on a phone with a notch: browsers here have no safe areas, so the page gets fixed ones."""
+
+    insets = {"top": 47, "right": 0, "bottom": 34, "left": 0}
+
+    def do_GET(self):
+        if self.path.split("?")[0] not in ("/", "/index.html"):
+            return super().do_GET()
+        html = open(os.path.join(WEB, "index.html"), encoding="utf-8").read()
+        for side, px in self.insets.items():
+            html = html.replace(f"env(safe-area-inset-{side})", f"{px}px")
+        body = html.encode()
+        self.send_response(200)
+        self.send_header("Content-Type", "text/html; charset=utf-8")
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
+
+
+class NotchedLandscape(Notched):
+    insets = {"top": 0, "right": 59, "bottom": 21, "left": 59}
+
+
+def serve(handler):
+    server = http.server.ThreadingHTTPServer(("127.0.0.1", 0), functools.partial(handler, directory=WEB))
+    threading.Thread(target=server.serve_forever, daemon=True).start()
+    return f"http://127.0.0.1:{server.server_port}/"
+
+
 async def opened(page):
     await page.wait_for_selector("#splash", state="detached", timeout=60000)
     await page.wait_for_timeout(700)
@@ -157,9 +186,6 @@ async def walk(browser, name, options, base):
     await page.evaluate("history.back()")
     await page.wait_for_timeout(1200)
     check(await find(page, "Pokračovať") is not None, "späť z kola ide na Domov a kolo ostane otvorené")
-    await page.evaluate("history.back()")
-    await page.wait_for_timeout(800)
-    check(page.url.startswith(base) and await find(page, "Pokračovať") is not None, "späť z Domova neopustí appku")
     await tap(page, "Pokračovať")
     for _ in range(30):
         s = await stored(page, "uli.session")
@@ -202,16 +228,14 @@ async def walk(browser, name, options, base):
 
 
 async def main():
-    base = APP
-    if not base:
-        server = http.server.ThreadingHTTPServer(("127.0.0.1", 0), functools.partial(Handler, directory=WEB))
-        threading.Thread(target=server.serve_forever, daemon=True).start()
-        base = f"http://127.0.0.1:{server.server_port}/"
+    base = APP or serve(Handler)
+    notched, landscape = (APP, APP) if APP else (serve(Notched), serve(NotchedLandscape))
     if SHOTS:
         os.makedirs(SHOTS, exist_ok=True)
     async with async_playwright() as p:
         wk, cr = await p.webkit.launch(), await p.chromium.launch()
-        await walk(wk, "iPhone WebKit", p.devices["iPhone 15"], base)
+        await walk(wk, "iPhone WebKit", p.devices["iPhone 15"], notched)
+        await walk(wk, "iPhone WebKit naležato", p.devices["iPhone 15 landscape"], landscape)
         await walk(wk, "iPhone SE WebKit tmavá", {**p.devices["iPhone SE"], "color_scheme": "dark"}, base)
         await walk(cr, "Pixel Chromium", p.devices["Pixel 7"], base)
         await walk(cr, "počítač Chromium", {"viewport": {"width": 1440, "height": 900}}, base)

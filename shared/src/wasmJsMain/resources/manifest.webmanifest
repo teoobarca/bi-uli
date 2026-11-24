@@ -3,7 +3,7 @@
   "short_name": "ULI",
   "description": "Drill zápočtového testu BI-ULI (Úvod do Linuxu, FIT ČVUT).",
   "lang": "sk",
-  "id": "./",
+  "id": "/bi-uli/",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

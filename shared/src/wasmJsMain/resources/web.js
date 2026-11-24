@@ -88,7 +88,7 @@ window.uliWeb = (() => {
     if (canvas) canvas.addEventListener("webglcontextlost", reloadWhenSeen);
   }
   let barShown = false;
-  function bar(text) {
+  function bar(text, reload) {
     if (barShown) return;
     barShown = true;
     const b = document.createElement("div");
@@ -96,29 +96,35 @@ window.uliWeb = (() => {
     b.setAttribute("role", "alert");
     b.innerHTML = '<span></span><button type="button">Načítať znova</button><button type="button" class="x" aria-label="Zavrieť">✕</button>';
     b.querySelector("span").textContent = text;
-    b.querySelector("button").addEventListener("click", () => location.reload());
+    const again = b.querySelector("button");
+    if (reload) again.addEventListener("click", () => location.reload()); else again.remove();
     b.querySelector(".x").addEventListener("click", () => { b.remove(); barShown = false; });
     document.body.appendChild(b);
   }
-  const crashed = () => bar("Niečo sa pokazilo.");
-  const saveFailed = () => bar("Postup sa nedá uložiť. Nie si v súkromnom okne?");
+  const crashed = () => bar("Niečo sa pokazilo.", true);
+  // no reload here: it would throw away the answers that are not saved yet
+  const saveFailed = () => bar("Postup sa nedá uložiť. Nie si v súkromnom okne?", false);
 
   // ---- the back gesture ----
-  // The browser's back (the iOS edge swipe, the back button) is the app's back: one history entry above the page is
-  // kept armed and re-armed after each use.
+  // The browser's back (the iOS edge swipe, the back button) is the app's back: one history entry above the page. It is
+  // added in a touch, again after each use: Safari's back skips entries a page added on its own.
   function onBack(cb) {
-    if (!history.state || !history.state.uli) {
-      history.replaceState({ uliBase: true }, "");
-      history.pushState({ uli: true }, "");
-    }
-    addEventListener("popstate", () => { history.pushState({ uli: true }, ""); cb(); });
+    let armed = !!(history.state && history.state.uli);  // a reload on that entry
+    const arm = () => { if (!armed) { armed = true; history.pushState({ uli: true }, ""); } };
+    addEventListener("touchend", arm, { capture: true, passive: true });
+    addEventListener("mouseup", arm, true);
+    addEventListener("popstate", () => { armed = !!(history.state && history.state.uli); if (!armed) cb(); });
   }
 
-  // Two tabs share one progress and each writes its whole copy: once another tab has saved, this one reloads when it
-  // comes forward, so it continues from the newer progress.
+  // Two tabs share one progress and each writes its whole copy: once another tab has saved, this one reloads (at once
+  // when it is visible, else when it comes forward) and continues from the newer progress. So does a page the browser
+  // kept aside and brought back, which may have missed the change.
   let stale = false;
-  addEventListener("storage", (e) => { if (e.key === "uli.progress" || e.key === "uli.session") stale = true; });
-  document.addEventListener("visibilitychange", () => { if (!document.hidden && stale) location.reload(); });
+  const refresh = () => { if (stale && !document.hidden) location.reload(); };
+  addEventListener("storage", (e) => { if (e.key === "uli.progress" || e.key === "uli.session") { stale = true; refresh(); } });
+  document.addEventListener("visibilitychange", refresh);
+  addEventListener("focus", refresh);
+  addEventListener("pageshow", (e) => { if (e.persisted) location.reload(); });
 
   const persist = async () => { try { if (navigator.storage && navigator.storage.persist) await navigator.storage.persist(); } catch (e) { /* not granted */ } };
   // an iPhone or iPad in the browser, not yet opened from the home screen

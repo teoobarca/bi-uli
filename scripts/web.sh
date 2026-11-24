@@ -57,18 +57,18 @@ PY
 
 # what loads before the first screen, for the splash's bar (resources/web.js)
 BYTES=$(cd "$OUT" && stat -f%z ./*.wasm ./*.ttf questions.json | awk '{s+=$1} END {print s}')
-perl -0pi -e "s|<title>|<meta name=\"uli-bytes\" content=\"$BYTES\">\n  <title>|" "$OUT/index.html"
+REV=$(git rev-parse --short HEAD)$(git diff --quiet HEAD || echo +)
+perl -0pi -e "s|<title>|<meta name=\"uli-bytes\" content=\"$BYTES\">\n  <meta name=\"uli-rev\" content=\"$REV\">\n  <title>|" "$OUT/index.html"
 
-# The service worker: online every file is asked for fresh, offline they come from this build's cache, filled whole at
-# install. The wasm files carry their hash in the name and come from the cache at once.
+# The service worker: every file comes from this build's cache, so the app starts the same on a weak signal and offline.
+# A new build installs beside it (fetched past the HTTP cache, so builds never mix) and takes over once the app is closed.
 CONTENT=$(cd "$OUT" && find . -type f ! -name sw.js | LC_ALL=C sort | xargs shasum -a 256 | shasum -a 256 | cut -c1-12)
 FILES=$(cd "$OUT" && find . -type f ! -name sw.js ! -name '.*' | sed 's|^\./||' | LC_ALL=C sort | python3 -c 'import json,sys; print(json.dumps([l.strip() for l in sys.stdin]))')
 cat > "$OUT/sw.js" <<EOF
-// Written by scripts/web.sh. A new build changes this file, so a new worker installs and replaces the cache only once it
-// holds the whole new build.
+// Written by scripts/web.sh: this build's files from the cache, a new build takes over once the app is closed.
 const CACHE = "uli-$CONTENT";
 const FILES = $FILES;
-self.addEventListener("install", (e) => e.waitUntil(caches.open(CACHE).then((c) => c.addAll(["./", ...FILES])).then(() => self.skipWaiting())));
+self.addEventListener("install", (e) => e.waitUntil(caches.open(CACHE).then((c) => c.addAll(["./", ...FILES].map((f) => new Request(f, { cache: "no-cache" }))))));
 self.addEventListener("activate", (e) => e.waitUntil(caches.keys()
   .then((keys) => Promise.all(keys.filter((k) => k.startsWith("uli-") && k !== CACHE).map((k) => caches.delete(k))))
   .then(() => self.clients.claim())));
@@ -76,8 +76,7 @@ self.addEventListener("fetch", (e) => {
   const url = new URL(e.request.url);
   if (e.request.method !== "GET" || url.origin !== location.origin || !url.pathname.startsWith(new URL("./", self.registration.scope).pathname)) return;
   const key = e.request.mode === "navigate" ? "./" : e.request;
-  if (/[0-9a-f]{16,}[.]wasm\$/.test(url.pathname)) { e.respondWith(caches.match(key).then((hit) => hit || fetch(e.request))); return; }
-  e.respondWith(fetch(e.request, { cache: "no-cache" }).catch(() => caches.match(key)));
+  e.respondWith(caches.open(CACHE).then((c) => c.match(key)).then((hit) => hit || fetch(e.request)));
 });
 EOF
 echo "build/web: $(du -sk "$OUT" | cut -f1) kB"
