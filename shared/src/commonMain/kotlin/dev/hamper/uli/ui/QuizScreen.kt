@@ -1,6 +1,5 @@
 package dev.hamper.uli.ui
 
-import android.view.HapticFeedbackConstants
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloat
@@ -89,8 +88,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -114,13 +111,11 @@ fun QuizScreen(vm: AppViewModel) {
     var last by remember { mutableStateOf(vm.quiz) }
     vm.quiz?.let { last = it }
     val s = last ?: return
-    val view = LocalView.current
+    val buzz = rememberAnswerHaptic()
 
     fun haptic() {
         val now = vm.quiz ?: return
-        if (now.answered) {
-            view.performHapticFeedback(if (now.correct) HapticFeedbackConstants.CONFIRM else HapticFeedbackConstants.REJECT)
-        }
+        if (now.answered) buzz(now.correct)
     }
 
     Column(Modifier.fillMaxSize().statusBarsPadding()) {
@@ -860,7 +855,7 @@ private fun VerdictBadge(correct: Boolean, frozen: Boolean, scale: Float = 1f) {
         if (correct) {
             // Eight small shapes fly out from behind the sun and stay around it, so the frame still reads as a win.
             for (i in 0 until 8) {
-                val angle = Math.toRadians(-100.0 + i * 45.0 + (i % 2) * 12.0)
+                val angle = (-100.0 + i * 45.0 + (i % 2) * 12.0) * kotlin.math.PI / 180
                 val dist = (18f + 18f * burst.value + (i % 3) * 2f) * k
                 val size = (6 + (i % 3) * 2).dp * k
                 Box(

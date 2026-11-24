@@ -3,9 +3,9 @@ agp = "9.5.0"
 kotlin = "2.4.21"
 composeBom = "2026.09.00"
 # The BOM pins material3 1.4.0, where the expressive APIs (MaterialShapes, ButtonGroup,
-# LoadingIndicator, ButtonShapes) are not public yet. 1.5.0-beta02 builds on the same
+# LoadingIndicator, ButtonShapes) are not public yet. 1.5.0-rc01 builds on the same
 # compose 1.12 line as the BOM.
-material3 = "1.5.0-beta02"
+material3 = "1.5.0-rc01"
 coreKtx = "1.19.1"
 activityCompose = "1.13.0"
 lifecycle = "2.11.0"
@@ -13,7 +13,12 @@ serialization = "1.12.0"
 coroutines = "1.11.0"
 junit = "4.13.2"
 iconsCore = "1.7.8"
-graphicsShapes = "1.0.1"
+graphicsShapes = "1.1.0"
+# Compose Multiplatform (shared/): on Android its artifacts resolve to the androidx ones pinned above.
+composeMultiplatform = "1.12.2"
+cmpMaterial3 = "1.12.0-alpha03"
+cmpIcons = "1.7.3"
+cmpLifecycle = "2.11.0"
 
 [libraries]
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
@@ -30,9 +35,19 @@ androidx-graphics-shapes = { module = "androidx.graphics:graphics-shapes", versi
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 junit = { module = "junit:junit", version.ref = "junit" }
+cmp-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "composeMultiplatform" }
+cmp-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "composeMultiplatform" }
+cmp-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "composeMultiplatform" }
+cmp-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "cmpMaterial3" }
+cmp-icons-core = { module = "org.jetbrains.compose.material:material-icons-core", version.ref = "cmpIcons" }
+cmp-lifecycle-viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel", version.ref = "cmpLifecycle" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+android-kmp-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
+compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }

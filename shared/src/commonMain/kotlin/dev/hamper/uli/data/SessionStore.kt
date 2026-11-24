@@ -4,7 +4,6 @@ import dev.hamper.uli.ExamState
 import dev.hamper.uli.QuizState
 import dev.hamper.uli.engine.Exam
 import kotlinx.serialization.Serializable
-import java.io.File
 
 /**
  * What is open right now: a learning round (with the boxes its cards had when it started, for the
@@ -27,25 +26,6 @@ interface SessionStore {
 
     /** Throws when the write fails. */
     fun save(data: SavedSession)
-}
-
-/** session.json next to progress.json, replaced atomically like the progress file. */
-class FileSessionStore(private val dir: File, private val now: () -> Long = System::currentTimeMillis) : SessionStore {
-    override fun load(): Loaded<SavedSession> =
-        readJson(dir, NAME, now) { storeJson.decodeFromString<SavedSession>(it) }
-
-    @Synchronized
-    override fun save(data: SavedSession) {
-        if (data.isEmpty) {
-            androidx.core.util.AtomicFile(File(dir, NAME)).delete()
-            return
-        }
-        writeJson(dir, NAME, storeJson.encodeToString(data))
-    }
-
-    companion object {
-        const val NAME = "session.json"
-    }
 }
 
 class MemorySessionStore(private var data: SavedSession = SavedSession()) : SessionStore {

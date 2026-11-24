@@ -1,18 +1,12 @@
 package dev.hamper.uli
 
-import android.app.Application
-import android.os.SystemClock
-import android.util.Log
-import android.widget.Toast
-import androidx.lifecycle.SavedStateHandle
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dev.hamper.uli.data.FileProgressStore
-import dev.hamper.uli.data.FileSessionStore
 import dev.hamper.uli.data.Loaded
+import dev.hamper.uli.data.MemoryProgressStore
 import dev.hamper.uli.data.MemorySessionStore
 import dev.hamper.uli.data.SavedSession
 import dev.hamper.uli.data.SessionStore
@@ -28,10 +22,7 @@ import dev.hamper.uli.engine.Srs
 import dev.hamper.uli.engine.Topic
 import dev.hamper.uli.engine.Options
 import dev.hamper.uli.engine.result
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import kotlin.random.Random
@@ -87,22 +78,23 @@ data class ExamSummary(val result: ExamResult, val exam: Exam) {
     val durationMs: Long get() = (exam.finishedAt ?: exam.startedAt) - exam.startedAt
 }
 
-@OptIn(ExperimentalCoroutinesApi::class)
-class AppViewModel(app: Application, private val handle: SavedStateHandle) : AndroidViewModel(app) {
-    val questions: List<Question> = app.assets.open("questions.json").use { Content.parse(it.readBytes().decodeToString()) }
+class AppViewModel(
+    questionsJson: String,
+    private var store: ProgressStore,
+    private var sessionStore: SessionStore,
+    private val host: Host,
+) : ViewModel() {
+    val questions: List<Question> = Content.parse(questionsJson)
     val byId: Map<Int, Question> = questions.associateBy { it.id }
     val ids: List<Int> = questions.map { it.id }
 
-    private var store: ProgressStore = FileProgressStore(app.filesDir)
-    private var sessionStore: SessionStore = FileSessionStore(app.filesDir)
-    private val io = Dispatchers.IO.limitedParallelism(1)
     private var random: Random = Random.Default
     private var seededShuffle = false
-    var clock: () -> Long = System::currentTimeMillis
+    var clock: () -> Long = host::now
         private set
 
     /** Monotonic time for "this question just came up" (wall-clock jumps must not unlock or lock taps). */
-    private val uptime: () -> Long = SystemClock::elapsedRealtime
+    private val uptime: () -> Long = host::uptime
 
     var progress by mutableStateOf(ProgressData())
         private set
@@ -142,7 +134,7 @@ class AppViewModel(app: Application, private val handle: SavedStateHandle) : And
             is Loaded.Ok -> { progress = loaded.data; true }
             Loaded.Missing -> true
             is Loaded.Corrupt -> {
-                Log.e(TAG, "progress.json unreadable, backed up to ${loaded.backup}", loaded.error)
+                host.log("progress.json unreadable, backed up to ${loaded.backup}", loaded.error)
                 damagedProgress = loaded
                 false
             }
@@ -152,7 +144,7 @@ class AppViewModel(app: Application, private val handle: SavedStateHandle) : And
             is Loaded.Ok -> s.data
             Loaded.Missing -> SavedSession()
             is Loaded.Corrupt -> {
-                Log.w(TAG, "session.json unreadable, dropped (copy at ${s.backup})", s.error)
+                host.log("session.json unreadable, dropped (copy at ${s.backup})", s.error)
                 SavedSession()
             }
         }
@@ -165,7 +157,7 @@ class AppViewModel(app: Application, private val handle: SavedStateHandle) : And
         progress = r.progress
         if (r.progressChanged) write(progress = progress)
         // Back on the screen the process died on, when there is still something to show there.
-        screen = when (val key = handle.get<String>(SCREEN_KEY)) {
+        screen = when (val key = host.savedScreen) {
             "quiz" -> if (quiz != null) Screen.Quiz else Screen.Home
             "exam" -> if (exam != null) Screen.ExamRun else Screen.Home
             "exam-end" -> if (examSummary != null) Screen.ExamEnd else Screen.Home
@@ -179,7 +171,7 @@ class AppViewModel(app: Application, private val handle: SavedStateHandle) : And
 
     private fun go(to: Screen) {
         screen = to
-        handle[SCREEN_KEY] = when (to) {
+        host.savedScreen = when (to) {
             Screen.Quiz -> "quiz"
             Screen.ExamRun -> "exam"
             Screen.ExamEnd -> "exam-end"
@@ -200,7 +192,7 @@ class AppViewModel(app: Application, private val handle: SavedStateHandle) : And
         val p = if (damagedProgress != null) null else progress
         val ps = store
         val ss = sessionStore
-        viewModelScope.launch(io) {
+        viewModelScope.launch(host.io) {
             val steps = buildList<() -> Unit> {
                 if (p != null) add { ps.save(p) }
                 if (session != null) add { ss.save(session) }
@@ -210,12 +202,10 @@ class AppViewModel(app: Application, private val handle: SavedStateHandle) : And
                 try {
                     step()
                 } catch (e: Exception) {
-                    Log.e(TAG, "save failed", e)
+                    host.log("save failed", e)
                     if (!toldAboutWriteError) {
                         toldAboutWriteError = true
-                        withContext(Dispatchers.Main) {
-                            Toast.makeText(getApplication<Application>(), "Postup sa nepodarilo uložiť. Skontroluj voľné miesto v telefóne.", Toast.LENGTH_LONG).show()
-                        }
+                        host.saveFailed()
                     }
                 }
             }
@@ -439,7 +429,7 @@ class AppViewModel(app: Application, private val handle: SavedStateHandle) : And
         roundSummary: RoundSummary? = null,
         examSummary: ExamSummary? = null,
     ) {
-        store = dev.hamper.uli.data.MemoryProgressStore(data)
+        store = MemoryProgressStore(data)
         sessionStore = MemorySessionStore()
         seededShuffle = true
         shotMode = true
@@ -458,10 +448,5 @@ class AppViewModel(app: Application, private val handle: SavedStateHandle) : And
 
     internal fun enableSeededShuffle() {
         seededShuffle = true
-    }
-
-    private companion object {
-        const val TAG = "Uli"
-        const val SCREEN_KEY = "screen"
     }
 }

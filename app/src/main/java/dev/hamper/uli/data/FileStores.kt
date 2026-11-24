@@ -2,27 +2,8 @@ package dev.hamper.uli.data
 
 import androidx.core.util.AtomicFile
 import dev.hamper.uli.engine.ProgressData
-import kotlinx.serialization.json.Json
 import java.io.File
 import java.io.FileNotFoundException
-
-/** What reading a saved file found. Only a missing file means "nothing yet"; anything else is kept safe. */
-sealed interface Loaded<out T> {
-    data class Ok<T>(val data: T) : Loaded<T>
-    data object Missing : Loaded<Nothing>
-
-    /** The file is there but unreadable. [backup] is a copy of it (null if even copying failed). */
-    data class Corrupt(val backup: File?, val error: Throwable) : Loaded<Nothing>
-}
-
-interface ProgressStore {
-    fun load(): Loaded<ProgressData>
-
-    /** Throws when the write fails; the caller decides how to tell the user. */
-    fun save(data: ProgressData)
-}
-
-internal val storeJson = Json { ignoreUnknownKeys = true; encodeDefaults = true }
 
 /**
  * Reads [name] in [dir]. A missing file is [Loaded.Missing]; a file that cannot be read or parsed is copied to
@@ -36,12 +17,12 @@ internal fun <T> readJson(dir: File, name: String, now: () -> Long, decode: (Str
     } catch (e: FileNotFoundException) {
         return Loaded.Missing
     } catch (e: Exception) {
-        return Loaded.Corrupt(backup(dir, base, now()), e)
+        return Loaded.Corrupt(backup(dir, base, now())?.name, e)
     }
     return try {
         Loaded.Ok(decode(bytes.decodeToString()))
     } catch (e: Exception) {
-        Loaded.Corrupt(backup(dir, base, now()), e)
+        Loaded.Corrupt(backup(dir, base, now())?.name, e)
     }
 }
 
@@ -80,10 +61,21 @@ class FileProgressStore(private val dir: File, private val now: () -> Long = Sys
     }
 }
 
-/** Screenshot sessions run on seeded data and never touch the real progress file. */
-class MemoryProgressStore(private var data: ProgressData = ProgressData()) : ProgressStore {
-    override fun load(): Loaded<ProgressData> = Loaded.Ok(data)
-    override fun save(data: ProgressData) {
-        this.data = data
+/** session.json next to progress.json, replaced atomically like the progress file. */
+class FileSessionStore(private val dir: File, private val now: () -> Long = System::currentTimeMillis) : SessionStore {
+    override fun load(): Loaded<SavedSession> =
+        readJson(dir, NAME, now) { storeJson.decodeFromString<SavedSession>(it) }
+
+    @Synchronized
+    override fun save(data: SavedSession) {
+        if (data.isEmpty) {
+            AtomicFile(File(dir, NAME)).delete()
+            return
+        }
+        writeJson(dir, NAME, storeJson.encodeToString(data))
+    }
+
+    companion object {
+        const val NAME = "session.json"
     }
 }

@@ -1,6 +1,5 @@
 package dev.hamper.uli.ui
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
@@ -71,6 +70,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.foundation.shape.CircleShape
 import dev.hamper.uli.AppViewModel
+import dev.hamper.uli.PredictiveBack
 import dev.hamper.uli.ExamState
 import dev.hamper.uli.engine.Code
 import dev.hamper.uli.engine.Exam
@@ -86,14 +86,13 @@ import kotlinx.coroutines.launch
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.gestures.animateScrollBy
 import androidx.compose.runtime.rememberCoroutineScope
-import java.util.Locale
 import kotlin.math.roundToInt
 
-fun formatPoints(p: Double): String = String.format(Locale.ROOT, "%.1f", p).replace('.', ',').removeSuffix(",0")
+fun formatPoints(p: Double): String = "${(p * 10).roundToInt() / 10},${(p * 10).roundToInt() % 10}".removeSuffix(",0")
 
 fun formatDuration(ms: Long): String {
     val s = ms / 1000
-    return String.format(Locale.ROOT, "%d:%02d", s / 60, s % 60)
+    return "${s / 60}:${(s % 60).toString().padStart(2, '0')}"
 }
 
 @Composable
@@ -106,7 +105,7 @@ fun ExamScreen(vm: AppViewModel) {
     fun quit() {
         if (s.exam.index == 0) vm.leaveExam() else confirmQuit = true
     }
-    BackHandler { quit() }
+    PredictiveBack(enabled = true, onProgress = {}, onBack = ::quit)
 
     var now by remember { mutableLongStateOf(vm.clock()) }
     LaunchedEffect(Unit) {

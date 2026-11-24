@@ -15,7 +15,6 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.ExperimentalTextApi
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -26,7 +25,6 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
-import dev.hamper.uli.R
 
 /*
  * Identity: warm paper and ink, with terminal amber as the one loud color.
@@ -139,9 +137,11 @@ private val DarkScheme = darkColorScheme(
     inverseOnSurface = Color(0xFF33302A),
 )
 
-@OptIn(ExperimentalTextApi::class)
-private fun sans(weight: Int, round: Float = 0f) = Font(
-    R.font.google_sans_flex,
+/** A variable font shipped with the app, [file] without .ttf (androidMain/res/font; the web serves the same files). */
+internal expect fun fontFile(file: String, weight: FontWeight, variationSettings: FontVariation.Settings): Font
+
+private fun sans(weight: Int, round: Float = 0f) = fontFile(
+    "google_sans_flex",
     weight = FontWeight(weight),
     variationSettings = FontVariation.Settings(
         FontVariation.weight(weight),
@@ -149,9 +149,8 @@ private fun sans(weight: Int, round: Float = 0f) = Font(
     ),
 )
 
-@OptIn(ExperimentalTextApi::class)
-private fun mono(weight: Int) = Font(
-    R.font.jetbrains_mono,
+private fun mono(weight: Int) = fontFile(
+    "jetbrains_mono",
     weight = FontWeight(weight),
     variationSettings = FontVariation.Settings(FontVariation.weight(weight)),
 )

@@ -77,19 +77,23 @@ fun greeting(hour: Int): String = when (hour) {
     else -> "Dobrý večer"
 }
 
+/** The local clock at a moment: its hour and when its day began (epoch ms). */
+data class LocalDay(val hour: Int, val midnight: Long)
+
+/** [LocalDay] of [now] (epoch ms) in the device's time zone. */
+expect fun localDay(now: Long): LocalDay
+
 /** Distinct questions answered since local midnight (each card remembers when it was last answered). */
-fun answeredToday(progress: ProgressData, now: Long, zone: java.time.ZoneId = java.time.ZoneId.systemDefault()): Int {
-    val midnight = java.time.Instant.ofEpochMilli(now).atZone(zone).toLocalDate().atStartOfDay(zone).toInstant().toEpochMilli()
-    return progress.cards.values.count { it.lastSeenAt in midnight..now }
+fun answeredToday(progress: ProgressData, now: Long, day: LocalDay = localDay(now)): Int {
+    return progress.cards.values.count { it.lastSeenAt in day.midnight..now }
 }
 
 /** The header's today line: "Dobrý večer · dnes 12 otázok", or an invitation when today is still empty. */
-fun todayLine(progress: ProgressData, now: Long, zone: java.time.ZoneId = java.time.ZoneId.systemDefault()): String {
-    val hour = java.time.Instant.ofEpochMilli(now).atZone(zone).hour
-    val n = answeredToday(progress, now, zone)
+fun todayLine(progress: ProgressData, now: Long, day: LocalDay = localDay(now)): String {
+    val n = answeredToday(progress, now, day)
     val today = when {
         n == 0 -> "dnes ešte nič"
         else -> "dnes $n " + plural(n.toLong(), "otázka", "otázky", "otázok")
     }
-    return "${greeting(hour)} · $today"
+    return "${greeting(day.hour)} · $today"
 }

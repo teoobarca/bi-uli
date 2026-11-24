@@ -6,14 +6,14 @@ cd "$ROOT"
 export JAVA_HOME=${JAVA_HOME:-/opt/homebrew/opt/openjdk@21}
 export ANDROID_HOME=${ANDROID_HOME:-$HOME/Library/Android/sdk}
 
-echo "== unit tests + assembleDebug"
-./gradlew -q :app:testDebugUnitTest :app:assembleDebug
+echo "== unit tests + assembleDebug + web compile"
+./gradlew -q :app:testDebugUnitTest :app:assembleDebug :shared:compileKotlinWasmJs
 
 echo "== content check"
 python3 content/check.py
 
 echo "== em dash check (res/ and Kotlin sources)"
-hits=$(grep -rn $'—' app/src/main/res app/src --include='*.kt' --include='*.xml' || true)
+hits=$(grep -rn $'—' app/src shared/src --include='*.kt' --include='*.xml' --include='*.html' --include='*.js' || true)
 if [ -n "$hits" ]; then
   echo "Found an em dash:"
   echo "$hits"
@@ -21,10 +21,10 @@ if [ -n "$hits" ]; then
 fi
 
 echo "== mono without ligatures (JetBrains Mono would draw != as a single sign)"
-theme=app/src/main/java/dev/hamper/uli/ui/theme/Theme.kt
+theme=shared/src/commonMain/kotlin/dev/hamper/uli/ui/theme/Theme.kt
 grep -q 'const val MONO_FEATURES = ".*liga 0.*calt 0' "$theme" || { echo "MONO_FEATURES must switch off liga and calt"; exit 1; }
 # Every mono style is built in Theme.kt (monoStyle / monoSpan, both with MONO_FEATURES); nobody else sets the family.
-hits=$(grep -rnE 'import dev\.hamper\.uli\.ui\.theme\.Mono$|fontFamily = Mono\b' app/src/main --include='*.kt' | grep -v "ui/theme/Theme.kt" || true)
+hits=$(grep -rnE 'import dev\.hamper\.uli\.ui\.theme\.Mono$|fontFamily = Mono\b' shared/src --include='*.kt' | grep -v "ui/theme/Theme.kt" || true)
 if [ -n "$hits" ]; then
   echo "Mono set outside monoStyle/monoSpan:"
   echo "$hits"

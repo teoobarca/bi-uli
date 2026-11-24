@@ -224,7 +224,7 @@ private fun Celebration(frozen: Boolean, modifier: Modifier) {
             // Fan out over the upper arc from the badge's rim, then fall a little.
             val angle = 200.0 + i * (140.0 / 17) + (i % 3) * 4.0
             val dist = 80 + (40 + (i % 4) * 22) * t.value
-            val rad = Math.toRadians(angle)
+            val rad = angle * kotlin.math.PI / 180
             val x = (cos(rad) * dist).toFloat()
             val y = (sin(rad) * dist).toFloat() + 60f * t.value * t.value
             val size = (12 + (i % 3) * 6).dp

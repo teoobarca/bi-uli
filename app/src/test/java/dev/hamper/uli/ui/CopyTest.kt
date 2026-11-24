@@ -74,8 +74,8 @@ class CopyTest {
                 3 to CardState(box = 2, lastSeenAt = evening - 10 * min),
             ),
         )
-        assertEquals(2, answeredToday(p, evening, zone))
-        assertEquals("Dobrý večer · dnes 2 otázky", todayLine(p, evening, zone))
-        assertEquals("Dobré ráno · dnes ešte nič", todayLine(p, evening + 12 * hour, zone))
+        assertEquals(2, answeredToday(p, evening, localDay(evening, zone)))
+        assertEquals("Dobrý večer · dnes 2 otázky", todayLine(p, evening, localDay(evening, zone)))
+        assertEquals("Dobré ráno · dnes ešte nič", todayLine(p, evening + 12 * hour, localDay(evening + 12 * hour, zone)))
     }
 }

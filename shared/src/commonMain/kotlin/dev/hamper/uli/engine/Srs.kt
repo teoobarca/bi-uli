@@ -191,7 +191,7 @@ object Srs {
     fun normalCdf(z: Double): Double {
         val t = 1 / (1 + 0.2316419 * kotlin.math.abs(z))
         val poly = t * (0.319381530 + t * (-0.356563782 + t * (1.781477937 + t * (-1.821255978 + t * 1.330274429))))
-        val tail = kotlin.math.exp(-z * z / 2) / kotlin.math.sqrt(2 * Math.PI) * poly
+        val tail = kotlin.math.exp(-z * z / 2) / kotlin.math.sqrt(2 * kotlin.math.PI) * poly
         return if (z >= 0) 1 - tail else tail
     }
 

@@ -78,7 +78,7 @@ import dev.hamper.uli.ui.theme.monoStyle
 import kotlin.math.roundToInt
 
 @Composable
-fun HomeScreen(vm: AppViewModel) {
+fun HomeScreen(vm: AppViewModel, notice: (@Composable () -> Unit)? = null) {
     val progress = vm.progress
     val ids = vm.ids
     val readiness = Srs.readiness(ids, progress)
@@ -121,12 +121,13 @@ fun HomeScreen(vm: AppViewModel) {
                 vm.damagedProgress?.let { damaged ->
                     item {
                         DamagedProgressCard(
-                            backupName = damaged.backup?.name,
+                            backupName = damaged.backup,
                             onRetry = vm::retryLoadProgress,
                             onStartFresh = { confirmStartFresh = true },
                         )
                     }
                 }
+                if (notice != null) item { notice() }
                 if (openExam != null) {
                     item {
                         OpenExamCard(
@@ -275,7 +276,7 @@ fun HomeScreen(vm: AppViewModel) {
             text = {
                 Text(
                     "Poškodený súbor sa prepíše postupom, ktorý máš teraz v aplikácii. " +
-                        (damaged.backup?.let { "Kópia ${it.name} ostane uložená." }
+                        (damaged.backup?.let { "Kópia $it ostane uložená." }
                             ?: "Zálohu sa nepodarilo vytvoriť, takže starý postup sa už nebude dať obnoviť."),
                 )
             },

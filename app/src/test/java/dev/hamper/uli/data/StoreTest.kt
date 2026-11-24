@@ -32,8 +32,8 @@ class StoreTest {
         assertTrue(loaded is Loaded.Corrupt)
         val backup = (loaded as Loaded.Corrupt).backup
         assertNotNull(backup)
-        assertEquals("progress.corrupt-1234.json", backup!!.name)
-        assertEquals(file.readText(), backup.readText())
+        assertEquals("progress.corrupt-1234.json", backup)
+        assertEquals(file.readText(), File(tmp.root, backup!!).readText())
         // Read again on the next start: the same copy, not a second one.
         val again = FileProgressStore(tmp.root) { 9999L }.load() as Loaded.Corrupt
         assertEquals(backup, again.backup)
