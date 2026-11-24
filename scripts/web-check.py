@@ -82,17 +82,6 @@ async def find(page, name, wait=6000):
         return None
 
 
-async def tap_el(page, el):
-    b = await el.bounding_box(timeout=5000)
-    await page.mouse.click(b["x"] + b["width"] / 2, b["y"] + b["height"] / 2)
-    await page.wait_for_timeout(900)
-
-
-async def tap(page, name):
-    el = await find(page, name)
-    check(el is not None, f"tlačidlo {name!r}") if el is None else await tap_el(page, el)
-
-
 async def stored(page, key):
     t = await page.evaluate("k => localStorage.getItem(k)", key)
     return json.loads(t) if t else None
@@ -119,6 +108,18 @@ async def buttons(page):
     return last
 
 
+async def tap(page, name):
+    if await find(page, name) is None:
+        check(False, f"tlačidlo {name!r}")
+        return
+    hit = next((b for b in await buttons(page) if plain(name) in plain(b[0]) and b[4] > 0), None)
+    if hit is None:
+        check(False, f"tlačidlo {name!r} vidno")
+        return
+    await page.mouse.click(hit[1] + hit[3] / 2, hit[2] + hit[4] / 2)
+    await page.wait_for_timeout(900)
+
+
 async def option(page, text):
     """Taps the option with [text] (its button reads "B", then the text), scrolled into view by "Ďalšie možnosti"."""
     want = plain(text)
@@ -130,7 +131,8 @@ async def option(page, text):
                 await page.mouse.click(x + w / 2, y + h / 2)
                 await page.wait_for_timeout(900)
                 return True
-        if more:
+        await page.wait_for_timeout(800)
+        if more and more in await buttons(page):  # really there, not just while the card slides in
             await page.mouse.click(more[1] + more[3] / 2, more[2] + more[4] / 2)
         await page.wait_for_timeout(900)
     if SHOTS:
@@ -164,11 +166,22 @@ async def walk(browser, name, options, base):
     page.on("request", lambda r: outside.append(r.url) if not r.url.startswith((base, "blob:", "data:")) else None)
     await page.goto(base)
     await opened(page)
+    # taps land where the app draws only when the canvas covers exactly the box Compose measures
+    fits = await page.evaluate("""() => { const app = document.getElementById('app'), r = app.getBoundingClientRect();
+      const find = (n) => { for (const e of n.querySelectorAll('*')) { if (e.tagName === 'CANVAS') return e; const c = e.shadowRoot && find(e.shadowRoot); if (c) return c; } };
+      const c = find(app).getBoundingClientRect();
+      return [c.x - r.x, c.y - r.y, c.width - app.clientWidth, c.height - app.clientHeight].every((d) => Math.abs(d) < 1) && r.bottom <= innerHeight; }""")
+    check(fits, "plátno presne vypĺňa appku")
+    if "naležato" in name:  # too short to walk without scrolling back up; the button at the bottom edge is enough
+        await tap(page, "Začať")
+        check(((await stored(page, "uli.session")) or {}).get("quiz") is not None, "ťuk na spodné tlačidlo otvorí kolo")
+        await ctx.close()
+        return
     hint = "iPhone" in name
     check((await find(page, "Skryť", 1500) is not None) == hint, "rada o ploche je len na iPhone")
     if hint:
         await tap(page, "Skryť")
-        check(await find(page, "Skryť", 800) is None, "rada sa dá skryť")
+        check("Skryť" not in [b[0] for b in await buttons(page)], "rada sa dá skryť")
     await tap(page, "Začať")
     await answer(page, True)
     p = await stored(page, "uli.progress")
