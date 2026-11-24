@@ -112,7 +112,11 @@ async def tap(page, name):
     if await find(page, name) is None:
         check(False, f"tlačidlo {name!r}")
         return
-    hit = next((b for b in await buttons(page) if plain(name) in plain(b[0]) and b[4] > 0), None)
+    for _ in range(5):  # a slow software renderer may still be animating it in
+        hit = next((b for b in await buttons(page) if plain(name) in plain(b[0]) and b[4] > 0), None)
+        if hit:
+            break
+        await page.wait_for_timeout(700)
     if hit is None:
         check(False, f"tlačidlo {name!r} vidno")
         return
