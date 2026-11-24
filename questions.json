@@ -1,0 +1,2149 @@
+[
+  {
+    "id": 1,
+    "topic": "intro",
+    "kind": "single",
+    "choose": 1,
+    "question": "Embedded Systems means:",
+    "questionSk": "Vstavané systémy (embedded systems) znamenajú:",
+    "options": [
+      {
+        "text": "Companies must share their changes",
+        "correct": false
+      },
+      {
+        "text": "You can view the software’s source code",
+        "correct": false,
+        "note": "Prístup k zdrojovému kódu je vlastnosť open source, nie vstavaných systémov."
+      },
+      {
+        "text": "Businesses cannot charge anything for the software, only the hardware",
+        "correct": false
+      },
+      {
+        "text": "Systems designed to do a specific task on hardware optimized for only that purpose",
+        "correct": true
+      },
+      {
+        "text": "Users must support the systems themselves",
+        "correct": false
+      }
+    ],
+    "explanation": "Vstavaný systém je počítač zabudovaný v zariadení (router, práčka, televízor), ktorý robí jednu konkrétnu úlohu na hardvéri navrhnutom len na ňu. Veľmi často na ňom beží Linux.",
+    "hook": "Embedded = zabudovaný v krabičke, robí jednu vec.",
+    "source": "ok"
+  },
+  {
+    "id": 2,
+    "topic": "intro",
+    "kind": "single",
+    "choose": 1,
+    "question": "Linux originally only ran on:",
+    "questionSk": "Linux pôvodne bežal iba na:",
+    "options": [
+      {
+        "text": "Xerox copy machines",
+        "correct": false
+      },
+      {
+        "text": "Specialized processor chips",
+        "correct": false
+      },
+      {
+        "text": "Intel 386 PCs",
+        "correct": true
+      },
+      {
+        "text": "Raspberry Pi computers",
+        "correct": false,
+        "note": "Raspberry Pi vzniklo až v roku 2012, Linux je z roku 1991."
+      },
+      {
+        "text": "Macintosh",
+        "correct": false
+      }
+    ],
+    "explanation": "Linus Torvalds napísal Linux v roku 1991 ako hobby projekt pre svoje PC s procesorom Intel 80386. Na ďalšie architektúry (ARM, PowerPC a iné) ho preniesli až neskôr.",
+    "hook": "1991, Linus, Intel 386: odtiaľ i386 v názvoch balíkov.",
+    "source": "ok"
+  },
+  {
+    "id": 3,
+    "topic": "intro",
+    "kind": "single",
+    "choose": 1,
+    "question": "Bundling utilities, management tools, and application software with a Linux kernel is called a:",
+    "questionSk": "Spojenie utilít, nástrojov na správu a aplikačného softvéru s linuxovým jadrom sa nazýva:",
+    "options": [
+      {
+        "text": "A trademark",
+        "correct": false
+      },
+      {
+        "text": "A distribution of Linux",
+        "correct": true
+      },
+      {
+        "text": "A type of hardware",
+        "correct": false
+      },
+      {
+        "text": "A text editor",
+        "correct": false
+      }
+    ],
+    "explanation": "Samotný Linux je len jadro. Distribúcia (Ubuntu, Debian, Fedora) ho zabalí spolu s nástrojmi, správcom balíkov a aplikáciami do použiteľného systému.",
+    "hook": "Jadro + všetko okolo = distribúcia (distro).",
+    "source": "ok"
+  },
+  {
+    "id": 4,
+    "topic": "intro",
+    "kind": "single",
+    "choose": 1,
+    "question": "A software release cycle describes:",
+    "questionSk": "Cyklus vydávania softvéru (release cycle) opisuje:",
+    "options": [
+      {
+        "text": "How often security fixes are implemented",
+        "correct": false,
+        "note": "Bezpečnostné záplaty vychádzajú priebežne, nie podľa cyklu vydávania nových verzií."
+      },
+      {
+        "text": "How often the software’s memory is released back to the operating system",
+        "correct": false
+      },
+      {
+        "text": "How often upgrades come out for software",
+        "correct": true
+      },
+      {
+        "text": "How often the computer must be rebooted",
+        "correct": false
+      },
+      {
+        "text": "How often the computer must be upgraded to support new software",
+        "correct": false
+      }
+    ],
+    "explanation": "Release cycle hovorí, ako často vychádzajú nové verzie softvéru. Napríklad Ubuntu vydáva novú verziu každých 6 mesiacov a LTS každé 2 roky. Bezpečnostné opravy chodia priebežne, mimo tohto cyklu.",
+    "source": "ok"
+  },
+  {
+    "id": 5,
+    "topic": "intro",
+    "kind": "multi",
+    "choose": 3,
+    "question": "Apple’s OS X is:",
+    "questionSk": "Apple OS X je:",
+    "options": [
+      {
+        "text": "A fully certified UNIX distribution",
+        "correct": true
+      },
+      {
+        "text": "Tightly integrated with Apple hardware",
+        "correct": true
+      },
+      {
+        "text": "Partially based on code from the FreeBSD project",
+        "correct": true
+      },
+      {
+        "text": "Primarily used to manage network services",
+        "correct": false,
+        "note": "OS X je hlavne desktopový systém, nie systém na správu sieťových služieb."
+      },
+      {
+        "text": "Derived from Linux",
+        "correct": false,
+        "note": "Nie, OS X vychádza z BSD a jadra Mach. Linux je samostatná vetva."
+      },
+      {
+        "text": "Able to natively run Windows binaries",
+        "correct": false
+      }
+    ],
+    "explanation": "macOS (OS X) je certifikovaný UNIX, je úzko previazaný s hardvérom Apple a jeho jadro Darwin preberá veľa kódu z FreeBSD. S Linuxom nemá spoločný kód.",
+    "hook": "Mac = BSD v obleku, nie Linux.",
+    "source": "ok"
+  },
+  {
+    "id": 6,
+    "topic": "intro",
+    "kind": "multi",
+    "choose": 3,
+    "question": "Microsoft Windows:",
+    "questionSk": "Microsoft Windows:",
+    "options": [
+      {
+        "text": "Is generally backwards compatible with previous versions",
+        "correct": true
+      },
+      {
+        "text": "Offers both desktop and server products",
+        "correct": true
+      },
+      {
+        "text": "Has a Linux compatibility mode",
+        "correct": false,
+        "note": "Podľa kľúča NDG nie. WSL síce existuje, ale skúška túto možnosť neuznáva."
+      },
+      {
+        "text": "Has a short maintenance cycle",
+        "correct": false,
+        "note": "Naopak, Microsoft podporuje svoje verzie veľa rokov, cyklus údržby je dlhý."
+      },
+      {
+        "text": "Has a scripting environment called PowerShell",
+        "correct": true
+      },
+      {
+        "text": "Has a new desktop version every year.",
+        "correct": false,
+        "note": "Nové verzie Windows vychádzajú raz za niekoľko rokov, nie každý rok."
+      }
+    ],
+    "explanation": "Windows si drží spätnú kompatibilitu, má desktopové aj serverové edície a PowerShell ako skriptovacie prostredie. Na skúške platí, že „Linux compatibility mode“ nie je správna odpoveď. V praxi dnes existuje WSL (Windows Subsystem for Linux), ale kľúč NDG s ním nepočíta.",
+    "source": "disputed: Windows 10/11 v praxi majú WSL (Linux compatibility), kľúč NDG to za správnu odpoveď nepovažuje"
+  },
+  {
+    "id": 7,
+    "topic": "intro",
+    "kind": "multi",
+    "choose": 2,
+    "question": "An interpreted programming language:",
+    "questionSk": "Interpretovaný programovací jazyk:",
+    "options": [
+      {
+        "text": "Requires a compilation step but no linking step",
+        "correct": false,
+        "note": "Interpretovaný jazyk nepotrebuje kompiláciu ani linkovanie."
+      },
+      {
+        "text": "Is converted into machine specific instructions as the program runs",
+        "correct": true
+      },
+      {
+        "text": "Tends to offer more features than compiled languages",
+        "correct": true
+      },
+      {
+        "text": "Requires a linking step but no compilation step",
+        "correct": false
+      },
+      {
+        "text": "Takes fewer resources to run than a compiled language",
+        "correct": false,
+        "note": "Naopak, preklad počas behu stojí viac CPU aj pamäte než skompilovaný program."
+      }
+    ],
+    "explanation": "Interpreter prekladá kód na strojové inštrukcie až počas behu, preto netreba kompiláciu ani linkovanie. Na skúške platí aj tvrdenie, že interpretované jazyky „ponúkajú viac funkcií“. V praxi to všeobecne neplatí, ale kľúč NDG ho vyžaduje.",
+    "hook": "Interpretovaný = prekladá za behu, ako simultánny tlmočník.",
+    "source": "disputed: 'tends to offer more features than compiled languages' je tvrdenie NDG kľúča, v praxi všeobecne neplatí"
+  },
+  {
+    "id": 8,
+    "topic": "intro",
+    "kind": "multi",
+    "choose": 2,
+    "question": "The two main families of Linux shells are:",
+    "questionSk": "Dve hlavné rodiny linuxových shellov sú:",
+    "options": [
+      {
+        "text": "Bourne Shell",
+        "correct": true
+      },
+      {
+        "text": "Python Shell",
+        "correct": false
+      },
+      {
+        "text": "Korn shell",
+        "correct": false,
+        "note": "Korn shell (ksh) patrí do rodiny Bourne shellu, nie je samostatná rodina."
+      },
+      {
+        "text": "Emacs",
+        "correct": false
+      },
+      {
+        "text": "C Shell",
+        "correct": true
+      }
+    ],
+    "explanation": "Shelly sa delia na rodinu Bourne shellu (sh, bash, ksh, zsh) a rodinu C shellu (csh, tcsh). Bash znamená Bourne Again SHell.",
+    "hook": "Bash = Bourne Again SHell, druhá rodina je csh.",
+    "source": "ok"
+  },
+  {
+    "id": 9,
+    "topic": "intro",
+    "kind": "multi",
+    "choose": 2,
+    "question": "In virtualization, what are the host and guest?",
+    "questionSk": "Čo je pri virtualizácii hostiteľ (host) a hosť (guest)?",
+    "options": [
+      {
+        "text": "The host is the machine that runs the virtual machines",
+        "correct": true
+      },
+      {
+        "text": "The guest is the machine that runs the virtual machines",
+        "correct": false
+      },
+      {
+        "text": "The terms can be used interchangeably",
+        "correct": false
+      },
+      {
+        "text": "A host is a virtual machine",
+        "correct": false
+      },
+      {
+        "text": "A guest is a virtual machine",
+        "correct": true
+      }
+    ],
+    "explanation": "Host je fyzický stroj s hypervízorom, ktorý spúšťa virtuálne stroje. Guest je virtuálny stroj, ktorý na ňom beží.",
+    "hook": "Host hostí, guest je na návšteve.",
+    "source": "ok"
+  },
+  {
+    "id": 10,
+    "topic": "intro",
+    "kind": "single",
+    "choose": 1,
+    "question": "Cloud computing is:",
+    "questionSk": "Cloud computing:",
+    "options": [
+      {
+        "text": "Requires fewer resources because systems are shared among many users",
+        "correct": false
+      },
+      {
+        "text": "Allows users in different geographical regions to work together in real time",
+        "correct": false
+      },
+      {
+        "text": "All are correct",
+        "correct": true
+      },
+      {
+        "text": "Is made possible by faster internet speeds",
+        "correct": false
+      },
+      {
+        "text": "Is useful for both business and home users",
+        "correct": false
+      }
+    ],
+    "explanation": "Všetky tvrdenia sedia: zdieľanie zdrojov šetrí hardvér, ľudia z rôznych miest spolupracujú v reálnom čase, umožnil to rýchlejší internet a hodí sa firmám aj domácnostiam.",
+    "source": "ok"
+  },
+  {
+    "id": 11,
+    "topic": "intro",
+    "kind": "multi",
+    "choose": 3,
+    "question": "Which of the following are properties of a strong password?",
+    "questionSk": "Ktoré z nasledujúcich sú vlastnosti silného hesla?",
+    "options": [
+      {
+        "text": "Based on easy to remember items like birthdays",
+        "correct": false,
+        "note": "Dátum narodenia sa dá ľahko uhádnuť alebo dohľadať."
+      },
+      {
+        "text": "Long so that it can be reused on multiple sites",
+        "correct": false,
+        "note": "Dĺžka je dobrá, ale opakované použitie je chyba: jeden únik prezradí všetky účty."
+      },
+      {
+        "text": "Includes symbols",
+        "correct": true
+      },
+      {
+        "text": "At least 10 characters long",
+        "correct": true
+      },
+      {
+        "text": "A mix of upper and lower case",
+        "correct": true
+      }
+    ],
+    "explanation": "Silné heslo je dlhé (aspoň 10 znakov) a mieša malé a veľké písmená a symboly, takže sa ťažko háda aj láme hrubou silou. To isté heslo nikdy nepoužívaj na viacerých stránkach.",
+    "source": "ok"
+  },
+  {
+    "id": 12,
+    "topic": "opensource",
+    "kind": "single",
+    "choose": 1,
+    "question": "A license where you don’t have access to the source code is called:",
+    "questionSk": "Licencia, pri ktorej nemáš prístup k zdrojovému kódu, sa nazýva:",
+    "options": [
+      {
+        "text": "Sourceless",
+        "correct": false
+      },
+      {
+        "text": "Impaired source",
+        "correct": false
+      },
+      {
+        "text": "Open source",
+        "correct": false
+      },
+      {
+        "text": "Closed source",
+        "correct": true
+      }
+    ],
+    "explanation": "Closed source (proprietárny) softvér dostaneš len ako hotový binárny program, zdrojový kód zostáva zatvorený u autora. Opakom je open source.",
+    "source": "ok"
+  },
+  {
+    "id": 13,
+    "topic": "opensource",
+    "kind": "single",
+    "choose": 1,
+    "question": "A copyleft provision in a software license means:",
+    "questionSk": "Ustanovenie copyleft v softvérovej licencii znamená:",
+    "options": [
+      {
+        "text": "You must provide support for your modifications",
+        "correct": false
+      },
+      {
+        "text": "You may not link against third party closed source software",
+        "correct": false,
+        "note": "GPL rieši šírenie zdrojového kódu, linkovanie s uzavretým softvérom priamo nezakazuje."
+      },
+      {
+        "text": "If you redistribute the software, you must distribute the source to any changes you make",
+        "correct": true
+      },
+      {
+        "text": "You must provide free copies of the software if you use it",
+        "correct": false
+      },
+      {
+        "text": "You give up your copyright to the software",
+        "correct": false,
+        "note": "Nie, autor si copyright ponecháva. Copyleft ho práve využíva na vynútenie podmienok."
+      }
+    ],
+    "explanation": "Copyleft (napríklad GPL) hovorí: keď upravený softvér ďalej šíriš, musíš sprístupniť aj zdrojový kód svojich zmien pod rovnakou licenciou. Kým ho len používaš sám, nič zverejňovať nemusíš.",
+    "hook": "Copyleft: čo dostaneš otvorené, ďalej dáš otvorené.",
+    "source": "ok"
+  },
+  {
+    "id": 14,
+    "topic": "opensource",
+    "kind": "multi",
+    "choose": 2,
+    "question": "The Free Software Foundation believes that:",
+    "questionSk": "Free Software Foundation zastáva názor, že:",
+    "options": [
+      {
+        "text": "Software should be free to modify",
+        "correct": true
+      },
+      {
+        "text": "People should write software with no expectation of making money",
+        "correct": false,
+        "note": "FSF nemá nič proti zarábaniu na softvéri, ide jej o slobodu."
+      },
+      {
+        "text": "Software should not have copyright",
+        "correct": false,
+        "note": "Licencia GPL je postavená práve na copyrighte."
+      },
+      {
+        "text": "Software should be free to share",
+        "correct": true
+      },
+      {
+        "text": "No money should ever change hands",
+        "correct": false,
+        "note": "Predaj slobodného softvéru je podľa FSF v poriadku."
+      }
+    ],
+    "explanation": "FSF chápe „free“ ako slobodu, nie ako cenu: softvér má byť slobodne upraviteľný a šíriteľný. Predávať slobodný softvér je úplne v poriadku.",
+    "hook": "Free as in freedom, not free beer.",
+    "source": "ok"
+  },
+  {
+    "id": 15,
+    "topic": "opensource",
+    "kind": "single",
+    "choose": 1,
+    "question": "What does it mean when a work is placed in the public domain?",
+    "questionSk": "Čo znamená, keď je dielo uvoľnené ako public domain (voľné dielo)?",
+    "options": [
+      {
+        "text": "The work was done by a government agency",
+        "correct": false
+      },
+      {
+        "text": "You may not use the work for commercial purposes",
+        "correct": false
+      },
+      {
+        "text": "The author has died",
+        "correct": false,
+        "note": "Autorské práva trvajú ešte desaťročia po smrti autora, dielo sa nestáva voľným hneď."
+      },
+      {
+        "text": "The author has relinquished the copyright on the work",
+        "correct": true
+      },
+      {
+        "text": "You must redistribute changes to the software",
+        "correct": false,
+        "note": "Povinnosť zverejniť zmeny je copyleft, nie public domain."
+      }
+    ],
+    "explanation": "Autor sa vzdal autorských práv, dielo už nikomu nepatrí a ktokoľvek ho môže použiť na čokoľvek, aj komerčne.",
+    "source": "ok"
+  },
+  {
+    "id": 16,
+    "topic": "cli",
+    "kind": "truefalse",
+    "choose": 1,
+    "question": "The semicolon (;) can be used to separate multiple commands to be executed in order.",
+    "questionSk": "Bodkočiarkou (;) môžeš oddeliť viac príkazov, ktoré sa vykonajú postupne.",
+    "options": [
+      {
+        "text": "True",
+        "correct": true
+      },
+      {
+        "text": "False",
+        "correct": false
+      }
+    ],
+    "explanation": "Pri ; sa príkazy spustia jeden po druhom bez ohľadu na to, či predchádzajúci uspel. Na podmienené reťazenie slúži && (ďalší len pri úspechu) a || (ďalší len pri zlyhaní).",
+    "demo": "$ echo jeden; cat nic; echo dva\njeden\ncat: nic: No such file or directory\ndva",
+    "source": "ok"
+  },
+  {
+    "id": 17,
+    "topic": "cli",
+    "kind": "single",
+    "choose": 1,
+    "question": "To be able to output messages to the screen, use the _______ command:",
+    "questionSk": "Na výpis správ na obrazovku použi príkaz _______:",
+    "options": [
+      {
+        "text": "print",
+        "correct": false,
+        "note": "Príkaz print v bashi nie je, poznáš ho z Pythonu."
+      },
+      {
+        "text": "echo",
+        "correct": true
+      },
+      {
+        "text": "display",
+        "correct": false
+      },
+      {
+        "text": "type",
+        "correct": false,
+        "note": "type zistí, čím je príkaz (alias, builtin, súbor), správy nevypisuje."
+      }
+    ],
+    "explanation": "echo vypíše svoje argumenty na štandardný výstup. V skriptoch sa ním vypisujú správy aj hodnoty premenných.",
+    "demo": "$ echo Ahoj $USER\nAhoj bob",
+    "source": "ok"
+  },
+  {
+    "id": 18,
+    "topic": "cli",
+    "kind": "single",
+    "choose": 1,
+    "question": "The _______ command will print a list of the commands that you’ve previously executed.",
+    "questionSk": "Príkaz _______ vypíše zoznam príkazov, ktoré si predtým spustil.",
+    "options": [
+      {
+        "text": "list",
+        "correct": false
+      },
+      {
+        "text": "eval",
+        "correct": false
+      },
+      {
+        "text": "exec",
+        "correct": false
+      },
+      {
+        "text": "history",
+        "correct": true
+      }
+    ],
+    "explanation": "Bash si pamätá zadané príkazy a ukladá ich do ~/.bash_history. Príkaz history ich vypíše očíslované a napríklad !102 spustí príkaz číslo 102 znova.",
+    "demo": "$ history | tail -3\n  101  cd /etc\n  102  ls -l\n  103  history | tail -3",
+    "source": "ok"
+  },
+  {
+    "id": 19,
+    "topic": "cli",
+    "kind": "single",
+    "choose": 1,
+    "question": "HOME is an example of _________.",
+    "questionSk": "HOME je príkladom _________.",
+    "options": [
+      {
+        "text": "A path variable",
+        "correct": false,
+        "note": "Taký druh premennej neexistuje. PATH je len ďalšia premenná prostredia."
+      },
+      {
+        "text": "A local variable",
+        "correct": false,
+        "note": "Lokálnu premennú spustené programy nevidia. HOME vidia, lebo je exportovaná."
+      },
+      {
+        "text": "An environment variable",
+        "correct": true
+      },
+      {
+        "text": "An alias",
+        "correct": false
+      },
+      {
+        "text": "An internal command",
+        "correct": false
+      }
+    ],
+    "explanation": "HOME je premenná prostredia: shell ju exportuje, takže ju zdedia všetky programy, ktoré spustíš. Lokálna premenná by existovala len v aktuálnom shelli.",
+    "hook": "VEĽKÉ písmená = zvyčajne premenná prostredia (HOME, PATH, USER).",
+    "demo": "$ echo $HOME\n/home/bob\n$ env | grep ^HOME\nHOME=/home/bob",
+    "source": "ok"
+  },
+  {
+    "id": 20,
+    "topic": "help",
+    "kind": "single",
+    "choose": 1,
+    "question": "The directory where additional documentation for software packages most likely can be found is:",
+    "questionSk": "Adresár, v ktorom s najväčšou pravdepodobnosťou nájdeš ďalšiu dokumentáciu k softvérovým balíkom, je:",
+    "options": [
+      {
+        "text": "/var/share/doc",
+        "correct": false,
+        "note": "/var je pre premenlivé dáta (logy, fronty), nie pre dokumentáciu."
+      },
+      {
+        "text": "/var/lib/doc",
+        "correct": false
+      },
+      {
+        "text": "/usr/software/doc",
+        "correct": false
+      },
+      {
+        "text": "/usr/share/doc",
+        "correct": true
+      }
+    ],
+    "explanation": "Balíky inštalujú dokumentáciu (README, changelog, licenciu) do /usr/share/doc/názov-balíka. /usr/share obsahuje dáta nezávislé od architektúry, /var je pre meniace sa dáta ako logy a cache.",
+    "hook": "Dokumentácia sa zdieľa: /usr/share/doc.",
+    "source": "ok"
+  },
+  {
+    "id": 21,
+    "topic": "help",
+    "kind": "single",
+    "choose": 1,
+    "question": "To start searching a man page, the first key you press is:",
+    "questionSk": "Aby si začal vyhľadávať v man stránke, prvá klávesa, ktorú stlačíš, je:",
+    "options": [
+      {
+        "text": "/",
+        "correct": true
+      },
+      {
+        "text": "f",
+        "correct": false
+      },
+      {
+        "text": "s",
+        "correct": false
+      },
+      {
+        "text": "!",
+        "correct": false
+      }
+    ],
+    "explanation": "man zobrazuje stránky cez pager less, kde / spustí vyhľadávanie smerom dopredu. Potom n skočí na ďalší výskyt a N na predchádzajúci.",
+    "hook": "Lomka hľadá: v less, man aj vim.",
+    "source": "ok"
+  },
+  {
+    "id": 22,
+    "topic": "help",
+    "kind": "multi",
+    "choose": 2,
+    "question": "To get help on using the info command, execute:",
+    "questionSk": "Pomoc k používaniu príkazu info získaš príkazom:",
+    "options": [
+      {
+        "text": "man info",
+        "correct": true
+      },
+      {
+        "text": "info info",
+        "correct": true
+      },
+      {
+        "text": "help info",
+        "correct": false,
+        "note": "help zobrazuje pomoc len k vstavaným príkazom bashu (cd, echo a pod.), info medzi ne nepatrí."
+      },
+      {
+        "text": "info -q",
+        "correct": false
+      }
+    ],
+    "explanation": "Návod k príkazu info je v jeho man stránke (man info) aj priamo v systéme info (info info). Príkaz help funguje len pre vstavané príkazy bashu.",
+    "source": "ok"
+  },
+  {
+    "id": 23,
+    "topic": "help",
+    "kind": "single",
+    "choose": 1,
+    "question": "The _____ command can be used to find any file, not just commands or man pages.",
+    "questionSk": "Príkazom _____ nájdeš akýkoľvek súbor, nielen príkazy alebo man stránky.",
+    "options": [
+      {
+        "text": "whatis",
+        "correct": false
+      },
+      {
+        "text": "locate",
+        "correct": true
+      },
+      {
+        "text": "whereis",
+        "correct": false,
+        "note": "whereis hľadá len binárky, zdrojové kódy a man stránky, nie hocijaký súbor."
+      },
+      {
+        "text": "apropos",
+        "correct": false,
+        "note": "apropos prehľadáva popisy man stránok, nie súbory na disku."
+      }
+    ],
+    "explanation": "locate hľadá v databáze všetkých súborov na disku (aktualizuje ju updatedb), preto je veľmi rýchly. whereis hľadá len binárky, zdrojáky a man stránky, whatis a apropos prehľadávajú popisy man stránok.",
+    "demo": "$ locate sysctl.conf\n/etc/sysctl.conf\n/usr/share/man/man5/sysctl.conf.5.gz",
+    "source": "ok"
+  },
+  {
+    "id": 24,
+    "topic": "files",
+    "kind": "single",
+    "choose": 1,
+    "question": "Hidden files are files that begin with what character?",
+    "questionSk": "Skryté súbory sú súbory, ktoré začínajú akým znakom?",
+    "options": [
+      {
+        "text": "A period (.)",
+        "correct": true
+      },
+      {
+        "text": "An asterisk (*)",
+        "correct": false
+      },
+      {
+        "text": "A plus (+)",
+        "correct": false
+      },
+      {
+        "text": "A dash (-)",
+        "correct": false
+      }
+    ],
+    "explanation": "Súbor, ktorého meno začína bodkou (.bashrc, .ssh), príkaz ls bez -a nezobrazí. Nie je to zabezpečenie, len konvencia, aby konfigurácia nezavadzala.",
+    "demo": "$ ls\nDocuments  notes.txt\n$ ls -a\n.  ..  .bashrc  Documents  notes.txt",
+    "source": "ok"
+  },
+  {
+    "id": 25,
+    "topic": "files",
+    "kind": "single",
+    "choose": 1,
+    "question": "The top-level directory on a Linux system is represented as:",
+    "questionSk": "Najvyšší (koreňový) adresár v Linuxe sa označuje:",
+    "options": [
+      {
+        "text": "/",
+        "correct": true
+      },
+      {
+        "text": "/home",
+        "correct": false
+      },
+      {
+        "text": "/root",
+        "correct": false,
+        "note": "/root je domovský adresár používateľa root, nie koreň systému."
+      },
+      {
+        "text": "C:",
+        "correct": false
+      }
+    ],
+    "explanation": "Všetko v Linuxe visí z jedného stromu s koreňom /. Aj ďalšie disky sa pripájajú (mountujú) niekam do neho. Písmená diskov ako C: sú z Windowsu.",
+    "hook": "/ je koreň, /root je domov roota.",
+    "source": "ok"
+  },
+  {
+    "id": 26,
+    "topic": "files",
+    "kind": "single",
+    "choose": 1,
+    "question": "The ls command without options or arguments…",
+    "questionSk": "Príkaz ls bez prepínačov a argumentov…",
+    "options": [
+      {
+        "text": "…prompts for a directory to list.",
+        "correct": false
+      },
+      {
+        "text": "…lists the contents of the current directory.",
+        "correct": true
+      },
+      {
+        "text": "…lists the contents of a user’s home directory.",
+        "correct": false,
+        "note": "Platí to len vtedy, keď v domovskom adresári práve stojíš."
+      },
+      {
+        "text": "…generates an error as this command requires arguments.",
+        "correct": false
+      }
+    ],
+    "explanation": "Bez argumentu ls vypíše obsah aktuálneho pracovného adresára, teda toho, ktorý ukazuje pwd. Domovský adresár vypíše len vtedy, keď v ňom práve si.",
+    "demo": "$ pwd\n/home/bob/projekt\n$ ls\nREADME.md  main.c",
+    "source": "ok"
+  },
+  {
+    "id": 27,
+    "topic": "files",
+    "kind": "single",
+    "choose": 1,
+    "question": "The command ls -S will sort files:",
+    "questionSk": "Príkaz ls -S zoradí súbory:",
+    "options": [
+      {
+        "text": "By size, smallest to largest",
+        "correct": false,
+        "note": "To robí ls -Sr. Samotné -S dáva najväčšie súbory navrch."
+      },
+      {
+        "text": "By modification date, newest to oldest",
+        "correct": false
+      },
+      {
+        "text": "By number of symlinks, largest to smallest",
+        "correct": false
+      },
+      {
+        "text": "By size, largest to smallest",
+        "correct": true
+      }
+    ],
+    "explanation": "-S triedi podľa veľkosti, najväčší súbor je navrchu. Opačné poradie dostaneš pridaním -r (ls -Sr).",
+    "hook": "Veľké S = Size, najväčší navrchu.",
+    "demo": "$ ls -1shS\ntotal 702M\n700M ubuntu.iso\n1.2M foto.jpg\n4.0K notes.txt",
+    "source": "ok"
+  },
+  {
+    "id": 28,
+    "topic": "files",
+    "kind": "truefalse",
+    "choose": 1,
+    "question": "When using the cp command, you must provide both a source and a destination.",
+    "questionSk": "Pri príkaze cp musíš zadať zdroj aj cieľ.",
+    "options": [
+      {
+        "text": "True",
+        "correct": true
+      },
+      {
+        "text": "False",
+        "correct": false
+      }
+    ],
+    "explanation": "cp kopíruje odniekiaľ niekam, takže potrebuje aspoň dva argumenty. S jedným skončí chybou. Ak chceš kopírovať do aktuálneho adresára, cieľ je bodka: cp /etc/hosts .",
+    "demo": "$ cp\ncp: missing file operand\n$ cp notes.txt kopia.txt && ls\nkopia.txt  notes.txt",
+    "source": "ok"
+  },
+  {
+    "id": 29,
+    "topic": "files",
+    "kind": "single",
+    "choose": 1,
+    "question": "Which option can be used with the rm command to prompt before deleting?",
+    "questionSk": "Ktorý prepínač príkazu rm zabezpečí, že sa pred zmazaním opýta?",
+    "options": [
+      {
+        "text": "l",
+        "correct": false
+      },
+      {
+        "text": "A",
+        "correct": false
+      },
+      {
+        "text": "-P",
+        "correct": false
+      },
+      {
+        "text": "-i",
+        "correct": true
+      }
+    ],
+    "explanation": "-i (interactive) sa pred každým mazaním pýta na potvrdenie. Rovnaké -i majú aj cp a mv, aby ťa varovali pred prepísaním súboru.",
+    "hook": "-i = interactive, najprv sa opýta.",
+    "demo": "$ rm -i notes.txt\nrm: remove regular file 'notes.txt'? y",
+    "source": "ok"
+  },
+  {
+    "id": 30,
+    "topic": "files",
+    "kind": "single",
+    "choose": 1,
+    "question": "Which command would list files that do not begin with a “T” or a “W”?",
+    "questionSk": "Ktorý príkaz vypíše súbory, ktoré nezačínajú na „T“ ani na „W“?",
+    "options": [
+      {
+        "text": "echo /etc/[!TW]*",
+        "correct": true
+      },
+      {
+        "text": "echo /etc/[*TW]!",
+        "correct": false,
+        "note": "Výkričník mimo začiatku zátvoriek nič neneguje, toto nie je platný vzor na to, čo chceme."
+      },
+      {
+        "text": "echo /etc/!TW",
+        "correct": false
+      },
+      {
+        "text": "echo /etc/*[TW!]",
+        "correct": false,
+        "note": "Toto hľadá mená končiace na T, W alebo !, výkričník tu nič neneguje."
+      }
+    ],
+    "explanation": "[TW] zodpovedá jednému znaku T alebo W a výkričník hneď za [ množinu neguje. [!TW]* teda znamená: prvý znak nie je T ani W, za ním čokoľvek. Vzor rozbalí shell, echo len vypíše výsledok.",
+    "hook": "! musí byť hneď za [, inak nič neneguje.",
+    "demo": "$ ls\nanna  bob  Tom  Walt\n$ echo [!TW]*\nanna bob",
+    "source": "ok"
+  },
+  {
+    "id": 31,
+    "topic": "archives",
+    "kind": "single",
+    "choose": 1,
+    "question": "In general, for which of the following would you want to use lossless compression?",
+    "questionSk": "Pri ktorom z nasledujúcich by si vo všeobecnosti chcel použiť bezstratovú kompresiu?",
+    "options": [
+      {
+        "text": "A JPEG image",
+        "correct": false
+      },
+      {
+        "text": "A log file",
+        "correct": true
+      },
+      {
+        "text": "An encrypted email",
+        "correct": false,
+        "note": "Šifrované dáta vyzerajú ako náhodný šum, takže sa skoro vôbec nedajú skomprimovať."
+      },
+      {
+        "text": "A movie",
+        "correct": false
+      },
+      {
+        "text": "An mp3 audio file",
+        "correct": false
+      }
+    ],
+    "explanation": "Pri texte, ako je log súbor, musí po rozbalení sedieť každý bajt, preto bezstratová kompresia (gzip, bzip2, xz). JPEG, MP3 a filmy sú už stratovo skomprimované a šifrované dáta sa takmer nedajú zmenšiť.",
+    "hook": "Text a logy: každý bajt sa ráta, teda bezstratovo.",
+    "source": "ok"
+  },
+  {
+    "id": 32,
+    "topic": "archives",
+    "kind": "multi",
+    "choose": 2,
+    "question": "You type gzip myfile.tar. What happens?",
+    "questionSk": "Napíšeš gzip myfile.tar. Čo sa stane?",
+    "options": [
+      {
+        "text": "An error; you forgot to specify the file with -f",
+        "correct": false
+      },
+      {
+        "text": "myfile.tar is unarchived into the current directory",
+        "correct": false,
+        "note": "gzip archívy nerozbaľuje, len komprimuje jeden súbor. Rozbaľuje gunzip alebo tar."
+      },
+      {
+        "text": "myfile.tar is removed",
+        "correct": true
+      },
+      {
+        "text": "An error; you forgot to pass the name of the output file",
+        "correct": false
+      },
+      {
+        "text": "myfile.tar.gz holds a compressed version of myfile.tar",
+        "correct": true
+      }
+    ],
+    "explanation": "gzip komprimuje súbor na mieste: vytvorí myfile.tar.gz a pôvodný myfile.tar zmaže. Ak chceš originál ponechať, použi gzip -k.",
+    "hook": "gzip zje originál a nechá po sebe .gz.",
+    "demo": "$ ls\nmyfile.tar\n$ gzip myfile.tar\n$ ls\nmyfile.tar.gz",
+    "source": "ok"
+  },
+  {
+    "id": 33,
+    "topic": "archives",
+    "kind": "single",
+    "choose": 1,
+    "question": "Which command will show what is inside the compressed tarball with a name of foo.tar.gz?",
+    "questionSk": "Ktorý príkaz ukáže, čo je vo vnútri skomprimovaného tarballu s názvom foo.tar.gz?",
+    "options": [
+      {
+        "text": "tar -tf foo.tar.gz",
+        "correct": false,
+        "note": "V praxi to v GNU tar funguje tiež (autodetekcia), ale skúška chce aj -z pre gzip."
+      },
+      {
+        "text": "tar -tzf foo.tar.gz",
+        "correct": true
+      },
+      {
+        "text": "tar -xf foo.tar.gz",
+        "correct": false,
+        "note": "-x archív rozbalí, nie iba vypíše obsah."
+      },
+      {
+        "text": "tar -lf foo.tar.gz",
+        "correct": false
+      },
+      {
+        "text": "tar -tjf foo.tar.gz",
+        "correct": false,
+        "note": "-j je pre bzip2 (.tar.bz2), nie pre gzip."
+      }
+    ],
+    "explanation": "-t (list) vypíše obsah archívu, -z hovorí, že je komprimovaný gzipom, a -f určuje súbor. Na skúške platí -tzf. V praxi moderný GNU tar kompresiu pri čítaní rozpozná sám, takže funguje aj tar -tf.",
+    "hook": "t = zoznam, z = gzip, j = bzip2, f = súbor.",
+    "demo": "$ tar -tzf foo.tar.gz\nfoo/\nfoo/a.txt\nfoo/b.txt",
+    "source": "disputed: v GNU tar funguje aj tar -tf foo.tar.gz (autodetekcia kompresie), kľúč NDG chce -tzf"
+  },
+  {
+    "id": 34,
+    "topic": "archives",
+    "kind": "truefalse",
+    "choose": 1,
+    "question": "By default, the zip command replaces uncompressed files with compressed files.",
+    "questionSk": "Príkaz zip štandardne nahradí nekomprimované súbory komprimovanými.",
+    "options": [
+      {
+        "text": "True",
+        "correct": false
+      },
+      {
+        "text": "False",
+        "correct": true
+      }
+    ],
+    "explanation": "zip vytvorí nový archív a pôvodné súbory nechá na disku. Tým sa líši od gzip, ktorý originál zmaže.",
+    "hook": "gzip originál zje, zip ho nechá.",
+    "demo": "$ zip notes.zip notes.txt\n  adding: notes.txt (deflated 52%)\n$ ls\nnotes.txt  notes.zip",
+    "source": "ok"
+  },
+  {
+    "id": 35,
+    "topic": "pipes",
+    "kind": "single",
+    "choose": 1,
+    "question": "Error messages generated by commands are sent where by default?",
+    "questionSk": "Kam sa štandardne posielajú chybové hlásenia príkazov?",
+    "options": [
+      {
+        "text": "STDIN",
+        "correct": false
+      },
+      {
+        "text": "Log files",
+        "correct": false
+      },
+      {
+        "text": "STDOUT",
+        "correct": false,
+        "note": "Na obrazovke to vyzerá rovnako, ale chyby idú samostatným kanálom 2 (STDERR)."
+      },
+      {
+        "text": "STDERR",
+        "correct": true
+      }
+    ],
+    "explanation": "Programy majú dva výstupné kanály: STDOUT (deskriptor 1) pre bežný výstup a STDERR (deskriptor 2) pre chyby. Oba štandardne končia na obrazovke, ale dajú sa presmerovať zvlášť, napríklad 2>/dev/null.",
+    "hook": "0 = vstup, 1 = výstup, 2 = chyby.",
+    "demo": "$ cat nic\ncat: nic: No such file or directory\n$ cat nic 2>/dev/null\n$",
+    "source": "ok"
+  },
+  {
+    "id": 36,
+    "topic": "pipes",
+    "kind": "single",
+    "choose": 1,
+    "question": "Which of the following commands will display only lines that begin with test?",
+    "questionSk": "Ktorý z nasledujúcich príkazov vypíše len riadky, ktoré začínajú na test?",
+    "options": [
+      {
+        "text": "grep *test file.txt",
+        "correct": false,
+        "note": "* v regexe znamená „predchádzajúci znak ľubovoľne veľakrát“, nie začiatok riadku."
+      },
+      {
+        "text": "grep &test file.txt",
+        "correct": false
+      },
+      {
+        "text": "grep $test* file.txt",
+        "correct": false,
+        "note": "Shell by $test nahradil hodnotou premennej a $ v regexe znamená koniec riadku."
+      },
+      {
+        "text": "grep ^test file.txt",
+        "correct": true
+      }
+    ],
+    "explanation": "V regulárnom výraze ^ ukotví vzor na začiatok riadku a $ na koniec. grep ^test teda nájde „test 1“ aj „testing“, ale nie „my test“.",
+    "hook": "^ začiatok riadku, $ koniec riadku.",
+    "demo": "$ grep ^test file.txt\ntest 1\ntesting\n$ grep -v ^test file.txt\nmy test",
+    "source": "ok"
+  },
+  {
+    "id": 37,
+    "topic": "pipes",
+    "kind": "single",
+    "choose": 1,
+    "question": "Which of the following commands will display lines that contain either start or end?",
+    "questionSk": "Ktorý z nasledujúcich príkazov vypíše riadky, ktoré obsahujú start alebo end?",
+    "options": [
+      {
+        "text": "egrep 'start|end' file.txt",
+        "correct": true
+      },
+      {
+        "text": "egrep start end file.txt",
+        "correct": false,
+        "note": "Vzor je tu len start, slovo end by grep bral ako názov súboru."
+      },
+      {
+        "text": "egrep start&end file.txt",
+        "correct": false
+      },
+      {
+        "text": "egrep (start|end) file.txt",
+        "correct": false,
+        "note": "Bez úvodzoviek shell zátvorky a | spracuje sám a skončí syntaktickou chybou."
+      }
+    ],
+    "explanation": "egrep (to isté ako grep -E) pozná rozšírené regulárne výrazy, v ktorých | znamená „alebo“. Vzor musí byť v úvodzovkách, inak by shell znak | pochopil ako rúru.",
+    "demo": "$ grep -E 'start|end' file.txt\nstart\nend\n$ grep -vE 'start|end' file.txt\nmiddle",
+    "source": "ok"
+  },
+  {
+    "id": 38,
+    "topic": "scripts",
+    "kind": "single",
+    "choose": 1,
+    "question": "A file begins with #!/bin/csh. This means:",
+    "questionSk": "Súbor začína riadkom #!/bin/csh. Znamená to:",
+    "options": [
+      {
+        "text": "This is a Perl script",
+        "correct": false
+      },
+      {
+        "text": "The operator should not be using /bin/csh",
+        "correct": false
+      },
+      {
+        "text": "C Shell compatibility mode is enabled",
+        "correct": false,
+        "note": "Žiadny režim kompatibility sa nezapína, skript jednoducho spustí skutočný /bin/csh."
+      },
+      {
+        "text": "Running the script will invoke /bin/csh to interpret the rest of the file",
+        "correct": true
+      },
+      {
+        "text": "Nothing, this is a comment",
+        "correct": false,
+        "note": "Pre shell je to síce komentár, ale jadro #! na prvom riadku číta a podľa neho vyberie interpret."
+      }
+    ],
+    "explanation": "Prvý riadok so znakmi #! (shebang) hovorí jadru, ktorým interpretom má skript spustiť. Tu sa zvyšok súboru vykoná pomocou C shellu /bin/csh.",
+    "hook": "Shebang #! = „spusti ma týmto programom“.",
+    "source": "ok"
+  },
+  {
+    "id": 39,
+    "topic": "scripts",
+    "kind": "single",
+    "choose": 1,
+    "question": "Most of nano’s commands take the form of:",
+    "questionSk": "Väčšina príkazov editora nano má tvar:",
+    "options": [
+      {
+        "text": "Alt and another character",
+        "correct": false,
+        "note": "Niekoľko skratiek s Alt existuje (napr. M-U = späť), ale väčšina je cez Ctrl."
+      },
+      {
+        "text": "Escape followed by another character",
+        "correct": false
+      },
+      {
+        "text": "The F1 through F12 function keys",
+        "correct": false
+      },
+      {
+        "text": "Mouse clicks",
+        "correct": false
+      },
+      {
+        "text": "Control and another character",
+        "correct": true
+      }
+    ],
+    "explanation": "nano sa ovláda klávesom Ctrl a ďalším znakom, napríklad Ctrl+O uloží a Ctrl+X ukončí. V spodnej lište ich vidíš zapísané ako ^O a ^X.",
+    "hook": "^ v spodnej lište nano = Ctrl.",
+    "source": "ok"
+  },
+  {
+    "id": 40,
+    "topic": "scripts",
+    "kind": "single",
+    "choose": 1,
+    "question": "The if command looks for what exit code to consider a condition to be true?",
+    "questionSk": "Aký návratový kód považuje príkaz if za splnenú podmienku (true)?",
+    "options": [
+      {
+        "text": "255",
+        "correct": false
+      },
+      {
+        "text": "0",
+        "correct": true
+      },
+      {
+        "text": "2",
+        "correct": false
+      },
+      {
+        "text": "1",
+        "correct": false,
+        "note": "1 je v shelli chyba, teda false. Presný opak ako v C alebo Pythone."
+      },
+      {
+        "text": "10",
+        "correct": false
+      }
+    ],
+    "explanation": "V shelli 0 znamená úspech, a teda pravdu. Akékoľvek nenulové číslo je chyba. Je to opak než v C, kde 0 je false. if len spustí príkaz a pozrie sa na jeho návratový kód.",
+    "hook": "Nula chýb = úspech = true.",
+    "demo": "$ true; echo $?\n0\n$ false; echo $?\n1",
+    "source": "ok"
+  },
+  {
+    "id": 41,
+    "topic": "scripts",
+    "kind": "single",
+    "choose": 1,
+    "question": "The number of users logged in is in a variable called USERS. How would you test to see if 5 users are logged in?",
+    "questionSk": "Počet prihlásených používateľov je v premennej USERS. Ako otestuješ, či je prihlásených práve 5 používateľov?",
+    "options": [
+      {
+        "text": "test $USERS -eq 5",
+        "correct": true
+      },
+      {
+        "text": "test $USERS,5",
+        "correct": false
+      },
+      {
+        "text": "test -f USERS=5",
+        "correct": false,
+        "note": "-f testuje, či existuje bežný súbor, s porovnaním čísel nemá nič spoločné."
+      },
+      {
+        "text": "test $USERS = 5",
+        "correct": false,
+        "note": "= porovnáva reťazce. Pre hodnotu 5 to v praxi prejde, ale skúška chce číselné -eq."
+      },
+      {
+        "text": "test $USERS -a 5",
+        "correct": false,
+        "note": "-a je logické AND medzi dvoma podmienkami, nie porovnanie."
+      }
+    ],
+    "explanation": "-eq porovnáva celé čísla, takže test $USERS -eq 5 je pravda, keď USERS má hodnotu 5. Operátor = porovnáva reťazce. Na skúške je správne len -eq. V praxi by pri hodnote presne 5 prešlo aj =, ale napríklad 05 by ako reťazec už nesedelo.",
+    "hook": "Čísla: -eq -ne -lt -gt. Reťazce: = a !=.",
+    "demo": "$ USERS=5\n$ test $USERS -eq 5; echo $?\n0\n$ test 05 = 5; echo $?\n1",
+    "source": "disputed: v praxi pri USERS=5 vráti 0 aj 'test $USERS = 5' (reťazcové porovnanie), kľúč NDG chce len -eq"
+  },
+  {
+    "id": 42,
+    "topic": "hardware",
+    "kind": "multi",
+    "choose": 2,
+    "question": "Which of the following are valid partitioning types?",
+    "questionSk": "Ktoré z nasledujúcich sú platné typy rozdelenia disku (tabuľky oddielov)?",
+    "options": [
+      {
+        "text": "PC",
+        "correct": false
+      },
+      {
+        "text": "MBR",
+        "correct": true
+      },
+      {
+        "text": "GPT",
+        "correct": true
+      },
+      {
+        "text": "BIOS",
+        "correct": false,
+        "note": "BIOS je firmvér základnej dosky. S MBR súvisí, ale typ tabuľky oddielov to nie je."
+      }
+    ],
+    "explanation": "Tabuľka oddielov je buď staršia MBR (najviac 4 primárne oddiely, disky do 2 TB), alebo novšia GPT (128 oddielov, obrovské disky, patrí k UEFI). BIOS je firmvér, nie typ tabuľky.",
+    "hook": "MBR: starý, 4 oddiely, 2 TB. GPT: nový, 128 oddielov.",
+    "demo": "$ sudo fdisk -l /dev/sda | grep Disklabel\nDisklabel type: gpt",
+    "source": "ok"
+  },
+  {
+    "id": 43,
+    "topic": "hardware",
+    "kind": "single",
+    "choose": 1,
+    "question": "Software that allows hardware devices to communicate with the installed operating system is called?",
+    "questionSk": "Softvér, ktorý umožňuje hardvérovým zariadeniam komunikovať s nainštalovaným operačným systémom, sa nazýva:",
+    "options": [
+      {
+        "text": "Drivers",
+        "correct": true
+      },
+      {
+        "text": "Instructions",
+        "correct": false
+      },
+      {
+        "text": "Packages",
+        "correct": false
+      },
+      {
+        "text": "Programs",
+        "correct": false
+      }
+    ],
+    "explanation": "Ovládač (driver) prekladá všeobecné požiadavky jadra na konkrétne príkazy pre dané zariadenie. V Linuxe sú ovládače väčšinou moduly jadra, vypíšeš ich príkazom lsmod.",
+    "source": "ok"
+  },
+  {
+    "id": 44,
+    "topic": "hardware",
+    "kind": "multi",
+    "choose": 3,
+    "question": "Which of the following commands will check hard disk GPT partitions?",
+    "questionSk": "Ktoré z nasledujúcich príkazov dokážu skontrolovať GPT oddiely na pevnom disku?",
+    "options": [
+      {
+        "text": "sfdisk",
+        "correct": false,
+        "note": "Podľa kľúča nie, pôvodne vedel len MBR. V praxi novšie sfdisk GPT podporuje."
+      },
+      {
+        "text": "sgdisk",
+        "correct": true
+      },
+      {
+        "text": "gdisk",
+        "correct": true
+      },
+      {
+        "text": "cgdisk",
+        "correct": true
+      },
+      {
+        "text": "gfdisk",
+        "correct": false,
+        "note": "Nástroj gfdisk neexistuje."
+      }
+    ],
+    "explanation": "Balík GPT fdisk má tri nástroje: gdisk (interaktívny ako fdisk), sgdisk (na skripty) a cgdisk (s menu v termináli). Na skúške je sfdisk nesprávne, hoci v praxi novšie sfdisk (util-linux od verzie 2.26) GPT tiež zvláda.",
+    "hook": "Všetky majú v mene gdisk: gdisk, sgdisk, cgdisk.",
+    "demo": "$ sudo gdisk -l /dev/sda | grep 'GPT:'\n  GPT: present",
+    "source": "disputed: moderné sfdisk (util-linux 2.26+) GPT podporuje, kľúč NDG ho za správne nepovažuje"
+  },
+  {
+    "id": 45,
+    "topic": "hardware",
+    "kind": "truefalse",
+    "choose": 1,
+    "question": "The process (ps) command shows only processes running in the current shell by default.",
+    "questionSk": "Príkaz ps (process) štandardne zobrazí len procesy bežiace v aktuálnom shelli.",
+    "options": [
+      {
+        "text": "True",
+        "correct": true
+      },
+      {
+        "text": "False",
+        "correct": false
+      }
+    ],
+    "explanation": "Bez prepínačov ps ukáže len procesy z tvojho aktuálneho terminálu, typicky shell a samotný ps. Presnejšie ide o procesy s rovnakým používateľom a rovnakým terminálom, na skúške platí True. Všetky procesy vypíše ps aux alebo ps -e.",
+    "demo": "$ ps\n    PID TTY          TIME CMD\n   2741 pts/0    00:00:00 bash\n   2810 pts/0    00:00:00 ps",
+    "source": "disputed: presne ps vyberá procesy s rovnakým EUID a terminálom, NDG to zjednodušuje na 'current shell'; True platí"
+  },
+  {
+    "id": 46,
+    "topic": "hardware",
+    "kind": "single",
+    "choose": 1,
+    "question": "The free command outputs statistics about:",
+    "questionSk": "Príkaz free vypisuje štatistiky o:",
+    "options": [
+      {
+        "text": "Memory usage",
+        "correct": true
+      },
+      {
+        "text": "Disk usage",
+        "correct": false,
+        "note": "Disk ukazuje df (disk free), nie free."
+      },
+      {
+        "text": "Software usage",
+        "correct": false
+      },
+      {
+        "text": "CPU usage",
+        "correct": false
+      }
+    ],
+    "explanation": "free ukazuje využitie RAM a swapu: celkovú, použitú, voľnú, cache a dostupnú pamäť. Obsadenie disku ukáže df, záťaž CPU top.",
+    "hook": "free = voľná pamäť, df = voľný disk.",
+    "demo": "$ free -h | cut -c1-44\n               total        used        free\nMem:           7.7Gi       2.1Gi       3.4Gi\nSwap:          2.0Gi          0B       2.0Gi",
+    "source": "ok"
+  },
+  {
+    "id": 47,
+    "topic": "hardware",
+    "kind": "single",
+    "choose": 1,
+    "question": "Which file contains the information passed to the kernel at boot time?",
+    "questionSk": "Ktorý súbor obsahuje parametre, ktoré dostalo jadro pri štarte?",
+    "options": [
+      {
+        "text": "/proc/kernel",
+        "correct": false
+      },
+      {
+        "text": "/proc/kopts",
+        "correct": false
+      },
+      {
+        "text": "/proc/kargs",
+        "correct": false
+      },
+      {
+        "text": "/proc/cmdline",
+        "correct": true
+      }
+    ],
+    "explanation": "/proc je virtuálny súborový systém, cez ktorý jadro ukazuje svoj stav. /proc/cmdline obsahuje presne tie parametre, ktoré bootloader (GRUB) odovzdal jadru pri štarte.",
+    "hook": "cmdline = príkazový riadok jadra.",
+    "demo": "$ tr ' ' '\\n' < /proc/cmdline\nBOOT_IMAGE=/vmlinuz-6.8.0-48-generic\nroot=/dev/mapper/ubuntu--vg-ubuntu--lv\nro",
+    "source": "ok"
+  },
+  {
+    "id": 48,
+    "topic": "hardware",
+    "kind": "single",
+    "choose": 1,
+    "question": "To make changes permanent for kernel parameter files found under /proc/sys, the following file can have entries added to it:",
+    "questionSk": "Aby boli zmeny parametrov jadra v súboroch pod /proc/sys trvalé, môžeš pridať záznamy do súboru:",
+    "options": [
+      {
+        "text": "/etc/sysinfo.conf",
+        "correct": false
+      },
+      {
+        "text": "/etc/sysctl.conf",
+        "correct": true
+      },
+      {
+        "text": "/etc/procctl.conf",
+        "correct": false
+      },
+      {
+        "text": "/etc/procsys.conf",
+        "correct": false
+      }
+    ],
+    "explanation": "Zápis do /proc/sys platí len do reštartu. Trvalé nastavenia patria do /etc/sysctl.conf (alebo /etc/sysctl.d/), ktoré sa načítajú pri štarte, alebo hneď príkazom sysctl -p.",
+    "hook": "/proc/sys ovláda príkaz sysctl, natrvalo cez sysctl.conf.",
+    "demo": "$ sudo nano /etc/sysctl.conf\n$ grep ^net /etc/sysctl.conf\nnet.ipv4.ip_forward=1\n$ sudo sysctl -p\nnet.ipv4.ip_forward = 1",
+    "source": "ok"
+  },
+  {
+    "id": 49,
+    "topic": "network",
+    "kind": "single",
+    "choose": 1,
+    "question": "Which of the following commands will display the IP address on a Linux system?",
+    "questionSk": "Ktorý z nasledujúcich príkazov zobrazí IP adresu v Linuxe?",
+    "options": [
+      {
+        "text": "ifconfig",
+        "correct": true
+      },
+      {
+        "text": "route",
+        "correct": false,
+        "note": "route ukazuje smerovaciu tabuľku, nie adresy rozhraní."
+      },
+      {
+        "text": "ipconfig",
+        "correct": false,
+        "note": "ipconfig je príkaz z Windowsu."
+      },
+      {
+        "text": "dig",
+        "correct": false,
+        "note": "dig sa pýta DNS servera na záznamy domén, nie na adresy tvojho stroja."
+      }
+    ],
+    "explanation": "ifconfig vypíše sieťové rozhrania aj s ich IP adresami. Dnes ho nahrádza ip addr a ifconfig často nie je predinštalovaný, ale na skúške je správne ifconfig. ipconfig je obdoba z Windowsu.",
+    "hook": "Linux: ifconfig. Windows: ipconfig.",
+    "demo": "$ sudo apt install net-tools\n…\n$ ifconfig enp0s3 | awk '/inet /{print $2}'\n10.0.2.15",
+    "source": "ok"
+  },
+  {
+    "id": 50,
+    "topic": "network",
+    "kind": "truefalse",
+    "choose": 1,
+    "question": "The RSA key fingerprint allows the dig command to connect to remote systems.",
+    "questionSk": "Odtlačok (fingerprint) RSA kľúča umožňuje príkazu dig pripojiť sa k vzdialeným systémom.",
+    "options": [
+      {
+        "text": "True",
+        "correct": false
+      },
+      {
+        "text": "False",
+        "correct": true
+      }
+    ],
+    "explanation": "dig sa nikam neprihlasuje, len posiela DNS dotazy (napríklad akú IP adresu má doména). Odtlačok kľúča overuje identitu servera pri pripojení cez ssh.",
+    "hook": "dig = DNS, fingerprint = ssh.",
+    "demo": "$ dig +short server.lab\n10.0.0.5\n$ ssh bob@server.lab\n…\nED25519 key fingerprint is SHA256:7Kq1mW…",
+    "source": "ok"
+  },
+  {
+    "id": 51,
+    "topic": "network",
+    "kind": "single",
+    "choose": 1,
+    "question": "When issuing the service network restart command, which of the following occurs?",
+    "questionSk": "Čo sa stane po zadaní príkazu service network restart?",
+    "options": [
+      {
+        "text": "…takes down all network interfaces, re-reads all related configuration files and then the networking for the system is restarted.",
+        "correct": true
+      },
+      {
+        "text": "…the networking for the system is stopped and then started back up.",
+        "correct": false,
+        "note": "V praxi to nie je nepravda, ale skúška uznáva len odpoveď s „takes down… re-reads config“."
+      },
+      {
+        "text": "…brings up all network interfaces, re-reads all related configuration files and then the networking for the system is restarted.",
+        "correct": false,
+        "note": "Pri reštarte sa rozhrania najprv vypínajú (take down), nie zapínajú (bring up)."
+      }
+    ],
+    "explanation": "Podľa kurzu NDG restart najprv zhodí všetky sieťové rozhrania, znova načíta ich konfiguračné súbory a potom sieť znova spustí. Druhá možnosť (zastaví a znova spustí) je v praxi takmer to isté, ale skúška chce tú podrobnejšiu s načítaním konfigurácie.",
+    "hook": "Restart: rozhrania dole, načítať konfiguráciu, znova hore.",
+    "source": "disputed: 'stopped and then started back up' je v praxi tiež pravda, kľúč NDG uznáva len variant s re-read config"
+  },
+  {
+    "id": 52,
+    "topic": "network",
+    "kind": "single",
+    "choose": 1,
+    "question": "Which of the following commands can be used to display socket statistics, and supports all major packet and socket types?",
+    "questionSk": "Ktorý z nasledujúcich príkazov zobrazí štatistiky socketov a podporuje všetky hlavné typy paketov a socketov?",
+    "options": [
+      {
+        "text": "route",
+        "correct": false,
+        "note": "route ukazuje smerovaciu tabuľku, nie sockety."
+      },
+      {
+        "text": "ss",
+        "correct": true
+      },
+      {
+        "text": "ifconfig",
+        "correct": false,
+        "note": "ifconfig ukazuje rozhrania a ich adresy, nie sockety."
+      },
+      {
+        "text": "top",
+        "correct": false
+      }
+    ],
+    "explanation": "ss (socket statistics) je moderná náhrada príkazu netstat: ukáže otvorené TCP a UDP spojenia aj porty, na ktorých niečo počúva. Napríklad ss -tln vypíše počúvajúce TCP porty.",
+    "hook": "ss = socket statistics.",
+    "demo": "$ ss -tlnH | awk '{print $1, $4}'\nLISTEN 127.0.0.53%lo:53\nLISTEN 0.0.0.0:22\nLISTEN [::]:22",
+    "source": "ok"
+  },
+  {
+    "id": 53,
+    "topic": "users",
+    "kind": "single",
+    "choose": 1,
+    "question": "Which of the following commands will display the groups that the user bob belongs to?",
+    "questionSk": "Ktorý z nasledujúcich príkazov zobrazí skupiny, do ktorých patrí používateľ bob?",
+    "options": [
+      {
+        "text": "group bob",
+        "correct": false,
+        "note": "Príkaz group neexistuje, existuje groups."
+      },
+      {
+        "text": "id bob",
+        "correct": true
+      },
+      {
+        "text": "all bob",
+        "correct": false
+      },
+      {
+        "text": "groups -a",
+        "correct": false,
+        "note": "groups nemá prepínač -a. Správne by bolo groups bob."
+      }
+    ],
+    "explanation": "id bob vypíše UID, primárnu skupinu (gid) aj všetky skupiny (groups), do ktorých bob patrí. Fungoval by aj príkaz groups bob, ale nie groups -a.",
+    "demo": "$ id bob | tr ' ' '\\n'\nuid=1001(bob)\ngid=1001(bob)\ngroups=1001(bob),27(sudo),100(users)",
+    "source": "ok"
+  },
+  {
+    "id": 54,
+    "topic": "users",
+    "kind": "single",
+    "choose": 1,
+    "question": "Traditional UNIX systems allowed users to belong to how many groups?",
+    "questionSk": "Do koľkých skupín mohol používateľ patriť v tradičných UNIX systémoch?",
+    "options": [
+      {
+        "text": "65,000",
+        "correct": false,
+        "note": "Približne toľko (65 536) zvládne dnešný Linux, nie tradičný UNIX."
+      },
+      {
+        "text": "10,000",
+        "correct": false
+      },
+      {
+        "text": "1",
+        "correct": false
+      },
+      {
+        "text": "256",
+        "correct": false
+      },
+      {
+        "text": "16",
+        "correct": true
+      }
+    ],
+    "explanation": "Tradičné UNIXy mali limit 16 skupín na používateľa a tento limit dodnes prežíva napríklad v NFS. Dnešný Linux zvládne až 65 536 skupín. Na skúške platí 16.",
+    "hook": "Tradičný UNIX: 16 skupín. Linux: 65 536.",
+    "source": "disputed: historicky závisí od verzie (V7 UNIX mal naraz len 1 aktívnu skupinu, BSD limit NGROUPS 16); kľúč NDG chce 16"
+  },
+  {
+    "id": 55,
+    "topic": "users",
+    "kind": "truefalse",
+    "choose": 1,
+    "question": "A value of 0 in the “minimum” password aging field means the user cannot change their password.",
+    "questionSk": "Hodnota 0 v poli „minimum“ pri starnutí hesla znamená, že používateľ nemôže zmeniť svoje heslo.",
+    "options": [
+      {
+        "text": "True",
+        "correct": false
+      },
+      {
+        "text": "False",
+        "correct": true
+      }
+    ],
+    "explanation": "Minimum je počet dní, ktoré musia od poslednej zmeny uplynúť, kým smie používateľ heslo zmeniť znova. 0 znamená žiadne čakanie, heslo môže meniť kedykoľvek.",
+    "hook": "Minimum 0 = môžeš meniť hneď.",
+    "demo": "$ sudo passwd -S bob\nbob P 2026-10-20 0 99999 7 -1\n$ passwd\nChanging password for bob.\nCurrent password:",
+    "source": "ok"
+  },
+  {
+    "id": 56,
+    "topic": "users",
+    "kind": "truefalse",
+    "choose": 1,
+    "question": "Sudo privileges allow users to execute commands as another user.",
+    "questionSk": "Oprávnenia sudo umožňujú používateľom spúšťať príkazy ako iný používateľ.",
+    "options": [
+      {
+        "text": "True",
+        "correct": true
+      },
+      {
+        "text": "False",
+        "correct": false
+      }
+    ],
+    "explanation": "sudo spustí príkaz s právami iného používateľa, štandardne roota, cez sudo -u aj ľubovoľného iného. Kto čo smie, určuje súbor /etc/sudoers.",
+    "hook": "sudo = substitute user do.",
+    "demo": "$ sudo whoami\nroot\n$ sudo -u alice whoami\nalice",
+    "source": "ok"
+  },
+  {
+    "id": 57,
+    "topic": "users",
+    "kind": "single",
+    "choose": 1,
+    "question": "The first line of this command displays how long the system has been running since being rebooted.",
+    "questionSk": "Prvý riadok výstupu tohto príkazu ukazuje, ako dlho systém beží od posledného reštartu.",
+    "options": [
+      {
+        "text": "id",
+        "correct": false
+      },
+      {
+        "text": "getent",
+        "correct": false
+      },
+      {
+        "text": "who",
+        "correct": false,
+        "note": "who vypíše prihlásených používateľov, ale riadok s uptime nemá."
+      },
+      {
+        "text": "w",
+        "correct": true
+      },
+      {
+        "text": "su",
+        "correct": false
+      }
+    ],
+    "explanation": "w vypíše, kto je prihlásený a čo práve robí. Jeho prvý riadok je rovnaký ako výstup uptime: čas behu systému, počet používateľov a záťaž. who ukáže len zoznam prihlásených bez tejto hlavičky.",
+    "hook": "w = who + uptime + čo kto robí.",
+    "demo": "$ w | head -1 | cut -d, -f1-3\n 14:02:11 up 3 days,  4:12,  1 user\n$ uptime -p\nup 3 days, 4 hours, 12 minutes",
+    "source": "ok"
+  },
+  {
+    "id": 58,
+    "topic": "users",
+    "kind": "multi",
+    "choose": 2,
+    "question": "Which option for the usermod command can be used to specify a user’s group ID (either primary or secondary)?",
+    "questionSk": "Ktorý prepínač príkazu usermod nastaví ID skupiny používateľa (primárnej alebo sekundárnej)?",
+    "options": [
+      {
+        "text": "-g",
+        "correct": true
+      },
+      {
+        "text": "-S",
+        "correct": false
+      },
+      {
+        "text": "-s",
+        "correct": false,
+        "note": "-s mení prihlasovací shell používateľa."
+      },
+      {
+        "text": "-G",
+        "correct": true
+      }
+    ],
+    "explanation": "Malé -g nastaví primárnu skupinu, veľké -G doplnkové (sekundárne) skupiny. Pozor: -G bez -a doterajšie doplnkové skupiny nahradí, preto sa píše usermod -aG skupina používateľ.",
+    "hook": "Malé g: jedna primárna. Veľké G: viac doplnkových.",
+    "demo": "$ sudo usermod -aG docker bob\n$ groups bob\nbob : bob docker",
+    "source": "ok"
+  },
+  {
+    "id": 59,
+    "topic": "users",
+    "kind": "truefalse",
+    "choose": 1,
+    "question": "The groupmod command can be used to add users to a group.",
+    "questionSk": "Príkazom groupmod sa dajú pridávať používatelia do skupiny.",
+    "options": [
+      {
+        "text": "True",
+        "correct": false
+      },
+      {
+        "text": "False",
+        "correct": true
+      }
+    ],
+    "explanation": "groupmod mení vlastnosti samotnej skupiny, hlavne názov (-n) a GID (-g). Používateľa do skupiny pridáš cez usermod -aG alebo gpasswd -a. Na skúške platí False, hoci v praxi novšie shadow-utils už majú groupmod -a -U.",
+    "demo": "$ sudo gpasswd -a bob devs\nAdding user bob to group devs",
+    "source": "disputed: novšie shadow-utils (4.11+, napr. Ubuntu 24.04) majú groupmod -a -U na pridanie členov; kľúč NDG chce False"
+  },
+  {
+    "id": 60,
+    "topic": "users",
+    "kind": "single",
+    "choose": 1,
+    "question": "Which of the following files contains user IDs?",
+    "questionSk": "Ktorý z nasledujúcich súborov obsahuje ID používateľov (UID)?",
+    "options": [
+      {
+        "text": "/etc/passwd",
+        "correct": true
+      },
+      {
+        "text": "/etc/shadow",
+        "correct": false,
+        "note": "V /etc/shadow sú hashe hesiel a starnutie hesla, UID nie."
+      },
+      {
+        "text": "/etc/group",
+        "correct": false,
+        "note": "/etc/group obsahuje GID skupín a mená členov, nie UID."
+      },
+      {
+        "text": "/etc/usr",
+        "correct": false
+      }
+    ],
+    "explanation": "Každý riadok /etc/passwd opisuje jedného používateľa: meno, x namiesto hesla, UID, GID, popis, domovský adresár a shell. /etc/shadow obsahuje hashe hesiel, /etc/group skupiny a ich GID.",
+    "hook": "passwd: meno:x:UID:GID:popis:domov:shell",
+    "demo": "$ grep bob /etc/passwd\nbob:x:1001:1001:Bob,,,:/home/bob:/bin/bash",
+    "source": "ok"
+  },
+  {
+    "id": 61,
+    "topic": "users",
+    "kind": "single",
+    "choose": 1,
+    "question": "Which of the following commands, run as root, will prevent the user bob from logging in?",
+    "questionSk": "Ktorý z nasledujúcich príkazov spustený ako root zabráni používateľovi bob prihlásiť sa?",
+    "options": [
+      {
+        "text": "usermod -L bob",
+        "correct": true
+      },
+      {
+        "text": "usermod -D bob",
+        "correct": false
+      },
+      {
+        "text": "usermod -d bob",
+        "correct": false,
+        "note": "-d mení domovský adresár, prihláseniu nezabráni."
+      },
+      {
+        "text": "usermod -l bob",
+        "correct": false,
+        "note": "Malé -l mení prihlasovacie meno (login), účet nezamkne."
+      }
+    ],
+    "explanation": "-L (lock) zamkne heslo: pred hash v /etc/shadow pridá výkričník, takže žiadne zadané heslo nebude sedieť. Odomkne sa príkazom usermod -U.",
+    "hook": "Veľké L = Lock, malé l = login (premenovanie).",
+    "demo": "$ sudo usermod -L bob\n$ sudo passwd -S bob\nbob L 2026-10-20 0 99999 7 -1",
+    "source": "ok"
+  },
+  {
+    "id": 62,
+    "topic": "users",
+    "kind": "single",
+    "choose": 1,
+    "question": "What directory contains a user’s home directory?",
+    "questionSk": "Ktorý adresár obsahuje domovské adresáre používateľov?",
+    "options": [
+      {
+        "text": "/rootfs",
+        "correct": false
+      },
+      {
+        "text": "/user",
+        "correct": false
+      },
+      {
+        "text": "/",
+        "correct": false,
+        "note": "/ je koreň celého stromu. Domovy sú o úroveň nižšie, v /home."
+      },
+      {
+        "text": "/home",
+        "correct": true
+      }
+    ],
+    "explanation": "Bežní používatelia majú domovské adresáre v /home, napríklad /home/bob. Výnimkou je root, ktorý má domov v /root.",
+    "demo": "$ ls /home\nalice  bob\n$ echo ~bob\n/home/bob",
+    "source": "ok"
+  },
+  {
+    "id": 63,
+    "topic": "users",
+    "kind": "single",
+    "choose": 1,
+    "question": "GIDs under 500 (or 1000) are usually reserved for what kind of groups?",
+    "questionSk": "Na aké skupiny sú zvyčajne vyhradené GID pod 500 (alebo 1000)?",
+    "options": [
+      {
+        "text": "Are not used for groups, but for user accounts",
+        "correct": false
+      },
+      {
+        "text": "Administrators",
+        "correct": false,
+        "note": "Aj skupiny pre správcov (sudo, adm) sú systémové, ale odpoveď je všeobecne „pre systém“."
+      },
+      {
+        "text": "User private groups (UPG)",
+        "correct": false,
+        "note": "Súkromné skupiny používateľov (UPG) majú GID od 1000 vyššie, zhodné s UID."
+      },
+      {
+        "text": "System use",
+        "correct": true
+      }
+    ],
+    "explanation": "Nízke GID (aj UID) patria systému: skupinám a účtom služieb ako sudo, adm alebo www-data. Bežní používatelia začínajú od 1000, staršie systémy Red Hat od 500.",
+    "hook": "Pod 1000 systém, od 1000 ľudia.",
+    "demo": "$ getent group sudo\nsudo:x:27:bob\n$ getent group bob\nbob:x:1001:",
+    "source": "ok"
+  },
+  {
+    "id": 64,
+    "topic": "perms",
+    "kind": "truefalse",
+    "choose": 1,
+    "question": "A user cannot delete a file if they do not own it.",
+    "questionSk": "Používateľ nemôže zmazať súbor, ktorý nevlastní.",
+    "options": [
+      {
+        "text": "True",
+        "correct": false
+      },
+      {
+        "text": "False",
+        "correct": true
+      }
+    ],
+    "explanation": "Zmazanie súboru je zmena adresára, nie súboru. Rozhoduje teda právo zápisu (w) a vstupu (x) na adresári, v ktorom súbor leží. Práve preto má /tmp sticky bit, ktorý mazanie cudzích súborov zakazuje.",
+    "hook": "Mazanie riadi adresár, nie súbor.",
+    "demo": "$ ls -l a.txt\n-rw-r--r-- 1 root root 0 Nov  3 10:00 a.txt\n$ rm -fv a.txt\nremoved 'a.txt'",
+    "source": "ok"
+  },
+  {
+    "id": 65,
+    "topic": "perms",
+    "kind": "truefalse",
+    "choose": 1,
+    "question": "The chown command permits changing group ownership done by root only.",
+    "questionSk": "Príkaz chown umožňuje meniť skupinové vlastníctvo iba rootovi.",
+    "options": [
+      {
+        "text": "True",
+        "correct": false
+      },
+      {
+        "text": "False",
+        "correct": true
+      }
+    ],
+    "explanation": "Vlastník súboru môže príkazom chown (alebo chgrp) zmeniť jeho skupinu na ľubovoľnú skupinu, v ktorej je sám členom. Iba root však môže meniť vlastníka (používateľa) súboru.",
+    "hook": "Vlastníka mení len root, skupinu aj vlastník súboru.",
+    "demo": "$ ls -l plan.md\n-rw-rw-r-- 1 bob bob 0 Nov  3 10:00 plan.md\n$ chown :devs plan.md\n$ ls -l plan.md\n-rw-rw-r-- 1 bob devs 0 Nov  3 10:00 plan.md",
+    "source": "ok"
+  },
+  {
+    "id": 66,
+    "topic": "perms",
+    "kind": "single",
+    "choose": 1,
+    "question": "Which of the following commands will list hidden files as well as their ownership?",
+    "questionSk": "Ktorý z nasledujúcich príkazov vypíše aj skryté súbory a zároveň ich vlastníctvo?",
+    "options": [
+      {
+        "text": "ls -a",
+        "correct": false,
+        "note": "Ukáže skryté súbory, ale nie ich vlastníkov."
+      },
+      {
+        "text": "ls -z",
+        "correct": false
+      },
+      {
+        "text": "ls -l",
+        "correct": false,
+        "note": "Ukáže vlastníkov, ale skryté súbory vynechá."
+      },
+      {
+        "text": "ls -la",
+        "correct": true
+      }
+    ],
+    "explanation": "-a zobrazí aj skryté súbory (začínajúce bodkou) a -l dlhý formát s právami, vlastníkom a skupinou. Spojením ls -la dostaneš oboje.",
+    "demo": "$ ls -la projekt\ntotal 12\ndrwxrwxr-x 2 bob bob 4096 Nov  3 10:00 .\ndrwxr-x--- 5 bob bob 4096 Nov  3 09:58 ..\n-rw-rw-r-- 1 bob bob   42 Nov  3 10:00 .env",
+    "source": "ok"
+  },
+  {
+    "id": 67,
+    "topic": "perms",
+    "kind": "single",
+    "choose": 1,
+    "question": "Which of the following commands will set setuid for /usr/bin/program?",
+    "questionSk": "Ktorý z nasledujúcich príkazov nastaví setuid na /usr/bin/program?",
+    "options": [
+      {
+        "text": "chmod 1755 /usr/bin/program",
+        "correct": false,
+        "note": "1 je sticky bit (ten má napríklad /tmp)."
+      },
+      {
+        "text": "chmod 4755 /usr/bin/program",
+        "correct": true
+      },
+      {
+        "text": "chmod 2755 /usr/bin/program",
+        "correct": false,
+        "note": "2 je setgid, nie setuid."
+      },
+      {
+        "text": "None of the above",
+        "correct": false
+      }
+    ],
+    "explanation": "Prvá zo štyroch číslic v chmod nastavuje špeciálne bity: 4 = setuid, 2 = setgid, 1 = sticky. 4755 teda znamená setuid plus rwxr-xr-x a v ls -l uvidíš s namiesto x u vlastníka.",
+    "hook": "SUID 4, SGID 2, sticky 1: ako r=4, w=2, x=1.",
+    "demo": "$ cd /usr/bin\n$ sudo chmod 4755 program\n$ ls -l program | cut -d' ' -f1,3\n-rwsr-xr-x root",
+    "source": "ok"
+  },
+  {
+    "id": 68,
+    "topic": "perms",
+    "kind": "single",
+    "choose": 1,
+    "question": "Setting setgid on a directory…",
+    "questionSk": "Nastavenie setgid na adresári…",
+    "options": [
+      {
+        "text": "…will allow scripts in the directory to be executed as the group owner of the directory.",
+        "correct": false,
+        "note": "Spúšťanie s právami skupiny robí setgid na spustiteľnom súbore. Na adresári sa len dedí skupina."
+      },
+      {
+        "text": "…will set the group owner of all files created in the directory to the group owner of the directory.",
+        "correct": true
+      },
+      {
+        "text": "…is not allowed by the system.",
+        "correct": false
+      },
+      {
+        "text": "…does nothing.",
+        "correct": false
+      }
+    ],
+    "explanation": "Súbory vytvorené v adresári so setgid zdedia skupinu adresára namiesto primárnej skupiny autora. Hodí sa to pre zdieľané tímové adresáre, kde majú všetky súbory patriť skupine tímu.",
+    "hook": "setgid na adresári: súbory dedia skupinu adresára.",
+    "demo": "$ cd /srv/team\n$ ls -ld .\ndrwxrwsr-x 2 root devs 4096 Nov  3 10:00 .\n$ touch a.txt; ls -l a.txt\n-rw-rw-r-- 1 bob devs 0 Nov  3 10:01 a.txt",
+    "source": "ok"
+  },
+  {
+    "id": 69,
+    "topic": "links",
+    "kind": "truefalse",
+    "choose": 1,
+    "question": "Deleting a source file will break an associated hard link.",
+    "questionSk": "Zmazanie zdrojového súboru pokazí hard link, ktorý naň odkazuje.",
+    "options": [
+      {
+        "text": "True",
+        "correct": false
+      },
+      {
+        "text": "False",
+        "correct": true
+      }
+    ],
+    "explanation": "Hard link je len ďalšie meno pre ten istý inode, teda pre tie isté dáta. Dáta zmiznú až s posledným menom, takže link funguje ďalej. Pokazí sa len symbolický link, ktorý ukazuje na meno súboru.",
+    "hook": "Hard link = rovnocenné meno, symlink = odkaz na meno.",
+    "demo": "$ echo ahoj > file\n$ ln file link\n$ rm file\n$ cat link\nahoj",
+    "source": "ok"
+  },
+  {
+    "id": 70,
+    "topic": "links",
+    "kind": "single",
+    "choose": 1,
+    "question": "Which of the following commands would create a hard link, link to file?",
+    "questionSk": "Ktorý z nasledujúcich príkazov vytvorí hard link s názvom link na súbor file?",
+    "options": [
+      {
+        "text": "ln file link",
+        "correct": true
+      },
+      {
+        "text": "ln -s link file",
+        "correct": false,
+        "note": "Opačné poradie a navyše -s, teda symbolický link."
+      },
+      {
+        "text": "ln link file",
+        "correct": false,
+        "note": "Opačné poradie: ln by hľadal existujúci súbor s názvom link."
+      },
+      {
+        "text": "ln -s file link",
+        "correct": false,
+        "note": "Poradie je správne, ale -s vytvorí symbolický, nie hard link."
+      }
+    ],
+    "explanation": "ln má rovnaké poradie argumentov ako cp: najprv existujúci súbor, potom nové meno. Bez -s vznikne hard link, s -s symbolický link.",
+    "hook": "ln ako cp: najprv existujúci, potom nový.",
+    "demo": "$ ln file link\n$ ls -i file link\n1311204 file  1311204 link\n$ ls -l link\n-rw-rw-r-- 2 bob bob 5 Nov  3 10:00 link",
+    "source": "ok"
+  }
+]
