@@ -3,35 +3,28 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/teoobarca/bi-uli/releases/latest/download/ULI.apk"><b>⬇ Android: stiahnuť ULI.apk</b></a>
-  &nbsp;·&nbsp; <a href="https://uli.hamper.dev/"><b>iPhone a počítač: otvoriť v prehliadači</b></a>
-  &nbsp;·&nbsp; offline &nbsp;·&nbsp; zadarmo
+  <a href="https://uli.hamper.dev/"><b>▶ Otvoriť uli.hamper.dev</b></a>
+  &nbsp;·&nbsp; <a href="https://github.com/teoobarca/bi-uli/releases/latest/download/ULI.apk"><b>⬇ APK pre Android</b></a>
+  &nbsp;·&nbsp; offline &nbsp;·&nbsp; zadarmo &nbsp;·&nbsp; bez registrácie
 </p>
 
-**ULI** je appka pre Android, iPhone aj počítač na precvičenie zápočtového testu **BI-ULI (Úvod do Linuxu)** na FIT
-ČVUT. Obsahuje všetkých 70 otázok z procvičovacieho testu, ktorý študenti zdieľajú na fit-wiki. Pri každej otázke sa
-dozvieš, prečo je odpoveď správna a prečo tá tvoja nebola. Kolo má 10 otázok, takže ho stihneš cestou v metre.
+**ULI** je appka na precvičenie zápočtového testu **BI-ULI (Úvod do Linuxu)** na FIT ČVUT. Beží na iPhone, Androide
+aj počítači: v prehliadači na [uli.hamper.dev](https://uli.hamper.dev/) alebo ako APK. Obsahuje všetkých 70 otázok
+z procvičovacieho testu, ktorý študenti zdieľajú na fit-wiki. Pri každej otázke sa dozvieš, prečo je odpoveď správna
+a prečo tá tvoja nebola. Kolo má 10 otázok, takže ho stihneš cestou v metre.
 
-Celá appka vznikla z jedného promptu v [Claude Code](https://claude.com/claude-code) a [T3 Code](https://t3.codes).
+Prvá verzia vznikla z jedného promptu v [Claude Code](https://claude.com/claude-code) a [T3 Code](https://t3.codes).
 
-## Inštalácia (2 minúty)
+## Ako začať
 
-**Android** (13 a novší)
+| Zariadenie | Čo spraviť |
+|---|---|
+| **iPhone** (iOS 18.2+) | V Safari otvor [uli.hamper.dev](https://uli.hamper.dev/), ťukni na **Zdieľať** a **Pridať na plochu**. |
+| **Android** (13+) | Stiahni [**ULI.apk**](https://github.com/teoobarca/bi-uli/releases/latest/download/ULI.apk), ťukni naň, daj **Povoliť** a **Inštalovať**. |
+| **Počítač, starší Android** | Otvor [uli.hamper.dev](https://uli.hamper.dev/) v aktuálnom prehliadači. |
 
-1. V mobile otvor [**ULI.apk**](https://github.com/teoobarca/bi-uli/releases/latest/download/ULI.apk) a stiahni ho.
-2. Ťukni na stiahnutý súbor. Android sa spýta, či môže prehliadač inštalovať aplikácie, daj **Povoliť**.
-3. **Inštalovať**. Hotovo, ďalej appka nepotrebuje internet.
-
-Novšiu verziu nainštaluješ rovnako, cez tú starú. Tvoj postup ostane.
-
-**iPhone** (iOS 18.2 a novší)
-
-1. V Safari otvor [uli.hamper.dev](https://uli.hamper.dev/).
-2. Ťukni na **Zdieľať** a potom na **Pridať na plochu**. Sprav to ešte pred učením: appka na ploche začína od nuly
-   a v Safari sa postup po 7 dňoch bez návštevy zmaže.
-3. Otvor ULI z plochy. Po prvom načítaní (asi 5 MB) funguje aj bez internetu.
-
-**Počítač:** stačí [otvoriť tú istú stránku](https://uli.hamper.dev/) v aktuálnom prehliadači.
+**iPhone: pridaj si ju na plochu ešte pred učením.** Appka na ploche začína od nuly a v samotnom Safari sa postup po
+7 dňoch bez návštevy zmaže.
 
 <table>
 <tr>
@@ -106,8 +99,14 @@ kľúča, lebo za ňu dostaneš body, a pri týchto otázkach ťa na rozdiel upo
 
 ## Časté otázky
 
-**Potrebuje internet?** Nie. Android appka nemá ani povolenie na internet, webová ho potrebuje len na prvé načítanie.
-Tvoj postup ostáva len v tvojom zariadení a medzi zariadeniami sa neprenáša.
+**Potrebuje internet?** APK vôbec, nemá naň ani povolenie. Web len pri prvom otvorení (asi 5 MB), potom ide aj offline.
+
+**Kde je môj postup?** Len v tvojom zariadení, bez účtu. Medzi zariadeniami, ani medzi APK a webom, sa neprenáša.
+
+**Ako appku aktualizujem?** Web sám: novú verziu uvidíš, keď ju zavrieš a znova otvoríš. APK stiahni a nainštaluj cez
+staré, postup ostane.
+
+**Na iPhone sa neotvorí.** Treba iOS 18.2 alebo novší. Na staršom použi počítač.
 
 **Android hlási „neznámy zdroj“ alebo Play Protect.** Je to bežné pri appkách mimo Google Play. Celý zdrojový kód je
 tu v repe, APK si môžeš zostaviť aj sám (pozri nižšie).
@@ -122,18 +121,18 @@ s textom, možnosťami, vysvetlením a ukážkou.
 Kotlin, Compose Multiplatform, Material 3: jeden kód pre Android aj web (Kotlin/Wasm). Žiadny server ani analytika.
 
 - `content/questions.json`: 70 otázok, zdroj pravdy. `python3 content/check.py` ho skontroluje.
-- `shared/src/commonMain/kotlin/dev/hamper/uli/`: celá appka. `engine/` je učenie (Leitnerove boxy, kolá, skúška, odhad), pokryté
-  unit testami.
+- `shared/src/commonMain/kotlin/dev/hamper/uli/`: celá appka. `engine/` je učenie (Leitnerove boxy, kolá,
+  skúška, odhad), pokryté unit testami.
 - `app/` je obal pre Android, `shared/src/wasmJsMain/` obal pre prehliadač.
 - Postup je v `progress.json`, rozrobené kolo alebo skúška v `session.json` (na webe v `localStorage`). Poškodené dáta
   sa nezmažú, appka ich odloží bokom.
 
 ```sh
-scripts/gate.sh                  # testy + debug build + kontrola obsahu
+scripts/gate.sh                  # testy + debug build + preklad webu + kontrola obsahu
 scripts/web.sh                   # webová verzia do build/web/
-uvx --with playwright==1.64.0 python scripts/web-check.py   # prejde ju v iPhone, Android aj počítačovom prehliadači
-scripts/web-publish.sh           # zverejní ju na GitHub Pages (vetva gh-pages)
-scripts/capture.sh <dir>         # zábery všetkých obrazoviek v oboch témach (beží na emulátore)
+uvx --with playwright==1.64.0 python scripts/web-check.py   # preklikne ju ako iPhone, Android a počítač
+scripts/web-publish.sh           # zverejní ju na uli.hamper.dev (GitHub Pages)
+scripts/capture.sh <dir>         # zábery obrazoviek v oboch témach (emulátor)
 ./gradlew :app:assembleRelease   # potrebuje podpisový kľúč v ~/.uli/android-signing.properties
 ```
 
