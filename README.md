@@ -3,8 +3,8 @@
 </p>
 
 <p align="center">
-  <a href="https://uli.hamper.dev/"><b>▶ Otvoriť uli.hamper.dev</b></a>
-  &nbsp;·&nbsp; <a href="https://github.com/teoobarca/bi-uli/releases/latest/download/ULI.apk"><b>⬇ APK pre Android</b></a>
+  <a href="https://uli.hamper.dev/"><b>Otvoriť uli.hamper.dev</b></a>
+  &nbsp;·&nbsp; <a href="https://github.com/teoobarca/bi-uli/releases/latest/download/ULI.apk"><b>Stiahnuť APK pre Android</b></a>
   &nbsp;·&nbsp; offline &nbsp;·&nbsp; zadarmo &nbsp;·&nbsp; bez registrácie
 </p>
 
