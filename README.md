@@ -63,7 +63,7 @@ Zdroje: [courses BI-ULI](https://courses.fit.cvut.cz/BI-ULI/classification/index
 NetAcad kurz „ULI 2026“ (názov testu, 80 b, 2 pokusy), [fit-wiki BI-ULI](https://fit-wiki.cz/%C5%A1kola/p%C5%99edm%C4%9Bty/bi-uli)
 (50 otázok).
 
-**Overené na ostrom teste.** V novembri 2026 som na ňom odpovedal presne podľa tejto appky a dostal **100 % bodov**.
+**Kľúč je overený.** Odpovede v appke boli overené na ostrom teste (ZS 2026/27) a zhodujú sa na **100 %**.
 
 **Sú to práve týchto 70 otázok?** Oficiálne courses hovorí len „náhodně vybrané otázky ze všech kapitol“. Študenti
 na fit-wiki však od roku 2019 zhodne píšu, že ostrý test je výber 50 otázok z poolu 70 a že procvičovací test
